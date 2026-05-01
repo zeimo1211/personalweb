@@ -1,0 +1,56 @@
+import { siteData, type Project, type Section } from '@/data/site.uts'
+
+export function getSections(): Section[] {
+  return siteData.sections
+}
+
+export function getSectionById(sectionId: string): Section | null {
+  for (let i = 0; i < siteData.sections.length; i++) {
+    const section = siteData.sections[i]
+    if (section.id === sectionId) {
+      return section
+    }
+  }
+  return null
+}
+
+export function getAllProjects(): Project[] {
+  let list: Project[] = []
+  for (let i = 0; i < siteData.sections.length; i++) {
+    const section = siteData.sections[i]
+    list = list.concat(section.projects)
+  }
+  return list
+}
+
+export function getProjectById(projectId: string): Project | null {
+  for (let i = 0; i < siteData.sections.length; i++) {
+    const section = siteData.sections[i]
+    for (let j = 0; j < section.projects.length; j++) {
+      const project = section.projects[j]
+      if (project.id === projectId) {
+        return project
+      }
+    }
+  }
+  return null
+}
+
+export function getProjectSection(projectId: string): Section | null {
+  for (let i = 0; i < siteData.sections.length; i++) {
+    const section = siteData.sections[i]
+    for (let j = 0; j < section.projects.length; j++) {
+      const project = section.projects[j]
+      if (project.id === projectId) {
+        return section
+      }
+    }
+  }
+  return null
+}
+
+export function openExternalUrl(url: string) {
+  // #ifdef H5
+  window.open(url, '_blank')
+  // #endif
+}

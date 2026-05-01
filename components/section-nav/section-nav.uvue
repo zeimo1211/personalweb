@@ -1,0 +1,248 @@
+<template>
+  <view class="section-nav">
+    <view class="nav-header">
+      <text class="nav-header-title">导航</text>
+      <text class="nav-header-desc">快速前往不同页面</text>
+    </view>
+
+    <view class="nav-group">
+      <view
+        v-for="section in sections"
+        :key="section.id"
+        class="nav-btn"
+        :class="activeSectionId == section.id ? 'nav-btn-active' : ''"
+        @click="goSection(section.id)"
+      >
+        <view
+          class="nav-indicator"
+          :class="activeSectionId == section.id ? 'nav-indicator-active' : ''"
+        ></view>
+
+        <view class="nav-main">
+          <text
+            class="nav-btn-text"
+            :class="activeSectionId == section.id ? 'nav-btn-text-active' : ''"
+          >
+            {{ section.name }}
+          </text>
+        </view>
+      </view>
+
+      <view
+        class="nav-btn"
+        :class="activeSectionId == 'games' ? 'nav-btn-active' : ''"
+        @click="goGames"
+      >
+        <view
+          class="nav-indicator"
+          :class="activeSectionId == 'games' ? 'nav-indicator-active' : ''"
+        ></view>
+        <view class="nav-main">
+          <text
+            class="nav-btn-text"
+            :class="activeSectionId == 'games' ? 'nav-btn-text-active' : ''"
+          >
+            游戏经历
+          </text>
+        </view>
+      </view>
+	  
+	  <view
+	    class="nav-btn"
+	    :class="activeSectionId == 'digital' ? 'nav-btn-active' : ''"
+	    @click="goDigitalDIY"
+	  >
+	    <view
+	      class="nav-indicator"
+	      :class="activeSectionId == 'digital' ? 'nav-indicator-active' : ''"
+	    ></view>
+	    <view class="nav-main">
+	      <text
+	        class="nav-btn-text"
+	        :class="activeSectionId == 'digital' ? 'nav-btn-text-active' : ''"
+	      >
+	        数码DIY
+	      </text>
+	    </view>
+	  </view>
+
+      <view
+        class="nav-btn"
+        :class="activeSectionId == 'favorite' ? 'nav-btn-active' : ''"
+        @click="goFavorite"
+      >
+        <view
+          class="nav-indicator"
+          :class="activeSectionId == 'favorite' ? 'nav-indicator-active' : ''"
+        ></view>
+        <view class="nav-main">
+          <text
+            class="nav-btn-text"
+            :class="activeSectionId == 'favorite' ? 'nav-btn-text-active' : ''"
+          >
+            我的最爱
+          </text>
+        </view>
+      </view>
+
+      <view
+        class="nav-btn"
+        :class="activeSectionId == 'about' ? 'nav-btn-active' : ''"
+        @click="goAbout"
+      >
+        <view
+          class="nav-indicator"
+          :class="activeSectionId == 'about' ? 'nav-indicator-active' : ''"
+        ></view>
+        <view class="nav-main">
+          <text
+            class="nav-btn-text"
+            :class="activeSectionId == 'about' ? 'nav-btn-text-active' : ''"
+          >
+            关于
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script lang="uts">
+export default {
+  props: {
+    sections: {
+      type: Array,
+      required: true
+    },
+    activeSectionId: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    goSection(sectionId: string) {
+      uni.navigateTo({
+        url: '/pages/section/index?sectionId=' + sectionId
+      })
+    },
+    goGames() {
+      uni.navigateTo({
+        url: '/pages/games/index'
+      })
+    },
+	goDigitalDIY() {
+	  uni.navigateTo({
+	    url: '/pages/digital/index'
+	  })
+	},
+    goFavorite() {
+      uni.navigateTo({
+        url: '/pages/favorite/index'
+      })
+    },
+    goAbout() {
+      uni.navigateTo({
+        url: '/pages/about/index'
+      })
+    }
+  }
+}
+</script>
+
+<style>
+.section-nav {
+  margin-top: 26px;
+}
+
+.nav-header {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.nav-header-title {
+  font-size: 13px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.nav-header-desc {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 18px;
+}
+
+.nav-group {
+  margin-top: 12px;
+  padding: 8px;
+  background-color: #f8fafc;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  border-radius: 16px;
+}
+
+.nav-btn {
+  height: 48px;
+  padding-left: 10px;
+  padding-right: 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+}
+
+.nav-btn + .nav-btn {
+  margin-top: 6px;
+}
+
+.nav-btn-active {
+  background-color: #EEF1FF;
+  box-shadow: inset 0 0 0 1px #D8DEFF;
+}
+
+.nav-indicator {
+  width: 4px;
+  height: 20px;
+  border-radius: 999px;
+  background-color: transparent;
+}
+
+.nav-indicator-active {
+  background-color: #6F7FD9;
+}
+
+.nav-main {
+  flex: 1;
+  margin-left: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-btn-text {
+  font-size: 15px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.nav-btn-text-active {
+  color: #6F7FD9;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+  .section-nav {
+    margin-top: 18px;
+  }
+
+  .nav-btn {
+    height: 44px;
+  }
+
+  .nav-btn-text {
+    font-size: 14px;
+  }
+}
+</style>

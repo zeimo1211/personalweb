@@ -1,0 +1,541 @@
+<template>
+	<view class="page">
+		<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="games" />
+
+		<scroll-view class="content" scroll-y="true" :scroll-top="scrollTopValue" scroll-with-animation="true"
+			lower-threshold="120" @scrolltolower="handleScrollToLower" @scroll="handleScroll">
+			<view class="hero-card">
+				<text class="hero-subtitle">游戏经历</text>
+				<text class="hero-title">我玩过的游戏</text>
+				<text class="hero-desc">
+					这里记录我体验过的一些游戏，以及它们带给我的感受、节奏和设计印象。
+				</text>
+
+				<view class="toolbar">
+					<view class="search-box">
+						<input class="search-input" :value="searchKeyword" placeholder="搜索游戏名称 / 时长 / 进度 / 评价"
+							@input="onSearchInput" />
+					</view>
+
+					<view v-if="searchKeyword != ''" class="clear-btn" @click="clearSearch">
+						<text class="clear-btn-text">清空搜索</text>
+					</view>
+
+					<view class="result-badge">
+						<text class="result-badge-text">共 {{ filteredGames.length }} 项</text>
+					</view>
+				</view>
+			</view>
+
+			<view v-if="visibleGames.length > 0" class="games-list">
+				<view v-for="game in visibleGames" :key="game.id" class="game-card">
+					<view class="game-cover-wrap">
+						<image class="game-cover" :src="game.cover" mode="aspectFit" />
+					</view>
+
+					<view class="game-main">
+						<view class="game-header">
+							<text class="game-title">{{ game.title }}</text>
+							<view class="game-score-badge">
+								<text class="game-score-text">{{ game.score }}</text>
+							</view>
+						</view>
+
+						<view class="game-meta-grid">
+							<view class="game-meta-item">
+								<text class="game-meta-label">游戏时长</text>
+								<text class="game-meta-value">{{ game.duration }}</text>
+							</view>
+
+							<view class="game-meta-item">
+								<text class="game-meta-label">游戏进度</text>
+								<text class="game-meta-value">{{ game.progress }}</text>
+							</view>
+						</view>
+
+						<view class="game-review-block">
+							<text class="game-review-label">评价</text>
+							<text class="game-review-text">{{ game.review }}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+
+			<view v-else class="empty-wrap">
+				<text class="empty-text">没有找到匹配的游戏。</text>
+			</view>
+
+			<view v-if="canLoadMore" class="load-tip-wrap">
+				<text class="load-tip-text">继续下滑以加载更多</text>
+			</view>
+
+			<view class="bottom-space"></view>
+		</scroll-view>
+
+		<view v-if="showBackTop" class="back-top-btn" @click="backToTop">
+			<text class="back-top-btn-text">回到顶部</text>
+		</view>
+	</view>
+</template>
+
+<script lang="uts">
+	import { siteData } from '@/data/site.uts'
+	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+
+	export default {
+		components: {
+			SiteSidebar
+		},
+		data() {
+			return {
+				site: siteData,
+				searchKeyword: '',
+				displayCount: 8,
+				pageSize: 8,
+				scrollTopValue: 0,
+				showBackTop: false
+			}
+		},
+		computed: {
+			filteredGames() : any[] {
+				const keyword = this.searchKeyword.trim().toLowerCase()
+				const list = this.site.games as any[]
+
+				if (keyword == '') {
+					return list
+				}
+
+				return list.filter((item) => {
+					const title = String(item.title || '').toLowerCase()
+					const duration = String(item.duration || '').toLowerCase()
+					const progress = String(item.progress || '').toLowerCase()
+					const score = String(item.score || '').toLowerCase()
+					const review = String(item.review || '').toLowerCase()
+
+					return (
+						title.indexOf(keyword) > -1 ||
+						duration.indexOf(keyword) > -1 ||
+						progress.indexOf(keyword) > -1 ||
+						score.indexOf(keyword) > -1 ||
+						review.indexOf(keyword) > -1
+					)
+				})
+			},
+			visibleGames() : any[] {
+				return this.filteredGames.slice(0, this.displayCount)
+			},
+			canLoadMore() : boolean {
+				return this.displayCount < this.filteredGames.length
+			}
+		},
+		methods: {
+			onSearchInput(event : any) {
+				this.searchKeyword = String(event.detail.value || '')
+				this.displayCount = this.pageSize
+			},
+			clearSearch() {
+				this.searchKeyword = ''
+				this.displayCount = this.pageSize
+			},
+			handleScrollToLower() {
+				if (this.canLoadMore) {
+					this.displayCount = this.displayCount + this.pageSize
+				}
+			},
+			handleScroll(event : any) {
+				const top = Number(event.detail.scrollTop || 0)
+				this.showBackTop = top > 500
+			},
+			backToTop() {
+				this.scrollTopValue = 0
+			}
+		}
+	}
+</script>
+
+<style>
+	.page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: row;
+		background-color: #f9fafb;
+		position: relative;
+	}
+
+	.content {
+		flex: 1;
+		height: 100vh;
+		padding: 24px;
+	}
+
+	.hero-card {
+		padding: 24px 26px;
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 18px;
+		box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+	}
+
+	.hero-subtitle {
+		font-size: 13px;
+		color: #6F7FD9;
+		font-weight: 600;
+	}
+
+	.hero-title {
+		margin-top: 8px;
+		font-size: 30px;
+		font-weight: 700;
+		color: #111827;
+	}
+
+	.hero-desc {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 26px;
+		color: #4b5563;
+	}
+
+	.toolbar {
+		margin-top: 18px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.search-box {
+		flex: 1;
+		min-width: 280px;
+	}
+
+	.search-input {
+		width: 100%;
+		height: 42px;
+		padding-left: 14px;
+		padding-right: 14px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #d1d5db;
+		border-radius: 12px;
+		background-color: #f9fafb;
+		font-size: 14px;
+		color: #111827;
+	}
+
+	.clear-btn {
+		height: 42px;
+		padding-left: 14px;
+		padding-right: 14px;
+		border-radius: 12px;
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #d1d5db;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.clear-btn-text {
+		font-size: 13px;
+		color: #4b5563;
+		font-weight: 600;
+	}
+
+	.result-badge {
+		height: 42px;
+		padding-left: 14px;
+		padding-right: 14px;
+		border-radius: 12px;
+		background-color: #EEF1FF;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #D8DEFF;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.result-badge-text {
+		font-size: 13px;
+		color: #6F7FD9;
+		font-weight: 600;
+	}
+
+	.games-list {
+		margin-top: 18px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 16px;
+	}
+
+	.game-card {
+		width: calc(50% - 8px);
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 18px;
+		padding: 16px;
+		box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+		display: flex;
+		flex-direction: row;
+		gap: 16px;
+	}
+
+	.game-cover-wrap {
+		width: 320px;
+		height: 180px;
+		background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 14px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.game-cover {
+		width: 100%;
+		height: 100%;
+	}
+
+	.game-main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.game-header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.game-title {
+		font-size: 26px;
+		font-weight: 700;
+		color: #111827;
+	}
+
+	.game-score-badge {
+		margin-left: 12px;
+		height: 34px;
+		padding-left: 14px;
+		padding-right: 14px;
+		border-radius: 17px;
+		background-color: #fff7ed;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #fed7aa;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.game-score-text {
+		font-size: 13px;
+		color: #c2410c;
+		font-weight: 700;
+	}
+
+	.game-meta-grid {
+		margin-top: 14px;
+		display: flex;
+		flex-direction: row;
+		gap: 12px;
+	}
+
+	.game-meta-item {
+		flex: 1;
+		padding: 12px 14px;
+		background-color: #f9fafb;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 12px;
+	}
+
+	.game-meta-label {
+		font-size: 12px;
+		color: #6b7280;
+		font-weight: 600;
+	}
+
+	.game-meta-value {
+		margin-top: 6px;
+		font-size: 15px;
+		line-height: 22px;
+		color: #111827;
+		font-weight: 600;
+	}
+
+	.game-review-block {
+		margin-top: 14px;
+	}
+
+	.game-review-label {
+		font-size: 13px;
+		color: #6b7280;
+		font-weight: 600;
+	}
+
+	.game-review-text {
+		margin-top: 8px;
+		font-size: 15px;
+		line-height: 26px;
+		color: #4b5563;
+	}
+
+	.empty-wrap {
+		margin-top: 18px;
+		padding: 22px;
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 18px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.empty-text {
+		font-size: 14px;
+		color: #6b7280;
+	}
+
+	.load-tip-wrap {
+		margin-top: 18px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.load-tip-text {
+		font-size: 13px;
+		color: #6b7280;
+	}
+
+	.bottom-space {
+		height: 24px;
+	}
+
+	.back-top-btn {
+		position: fixed;
+		right: 28px;
+		bottom: 28px;
+		height: 42px;
+		padding-left: 16px;
+		padding-right: 16px;
+		border-radius: 12px;
+		background-color: #6F7FD9;
+		box-shadow: 0 8px 24px rgba(111, 127, 217, 0.28);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 20;
+	}
+
+	.back-top-btn-text {
+		font-size: 14px;
+		color: #ffffff;
+		font-weight: 600;
+	}
+
+	@media screen and (max-width: 1800px) {
+		.game-card {
+			width: 100%;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		.page {
+			flex-direction: column;
+		}
+
+		.content {
+			width: 100%;
+			height: auto;
+			padding: 16px;
+		}
+
+		.hero-card {
+			padding: 18px;
+		}
+
+		.hero-title {
+			font-size: 24px;
+			line-height: 32px;
+		}
+
+		.toolbar {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.search-box {
+			min-width: 0;
+			width: 100%;
+		}
+
+		.clear-btn {
+			width: 100%;
+		}
+
+		.result-badge {
+			width: 100%;
+		}
+
+		.games-list {
+			gap: 12px;
+		}
+
+		.game-card {
+			width: 100%;
+			padding: 14px;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		.game-cover-wrap {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 16 / 9;
+		}
+
+		.game-title {
+			font-size: 20px;
+		}
+
+		.game-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 8px;
+		}
+
+		.game-score-badge {
+			margin-left: 0;
+		}
+
+		.game-meta-grid {
+			flex-direction: column;
+		}
+
+		.back-top-btn {
+			right: 16px;
+			bottom: 16px;
+		}
+	}
+</style>

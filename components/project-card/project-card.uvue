@@ -1,0 +1,178 @@
+<template>
+  <view class="project-card" @click="goDetail">
+    <view class="project-cover-wrap">
+      <image class="project-cover" :src="project.cover" mode="aspectFit" />
+    </view>
+
+    <view class="project-body">
+      <view class="project-title-row">
+        <text class="project-title">{{ project.title }}</text>
+        <view class="status-badge">
+          <text class="status-badge-text">{{ project.status }}</text>
+        </view>
+      </view>
+
+      <text class="project-intro">{{ shortIntro }}</text>
+
+      <view class="project-tags">
+        <view
+          v-for="tag in project.tags"
+          :key="tag"
+          class="project-tag"
+        >
+          <text class="project-tag-text">{{ tag }}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script lang="uts">
+export default {
+  props: {
+    project: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    shortIntro(): string {
+      const text = this.project.intro as string
+      if (text.length > 44) {
+        return text.substring(0, 44) + '...'
+      }
+      return text
+    }
+  },
+  methods: {
+    goDetail() {
+      uni.navigateTo({
+        url: '/pages/project/detail?projectId=' + this.project.id
+      })
+    }
+  }
+}
+</script>
+
+<style>
+.project-card {
+  width: 100%;
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.05);
+}
+
+.project-cover-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.project-cover {
+  width: 100%;
+  height: 100%;
+}
+
+.project-body {
+  padding: 16px;
+}
+
+.project-title-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-title {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.status-badge {
+  margin-left: 10px;
+  height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 14px;
+  background-color: #ecfdf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-badge-text {
+  font-size: 12px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+.project-intro {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #4b5563;
+  min-height: 44px;
+}
+
+.project-meta-row {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.project-meta-text {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.project-meta-dot {
+  margin-left: 6px;
+  margin-right: 6px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.project-tags {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  margin-right: 8px;
+  margin-bottom: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 26px;
+  border-radius: 13px;
+  background-color: #f3f4f6;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-tag-text {
+  font-size: 12px;
+  color: #4b5563;
+}
+</style>

@@ -1,0 +1,128 @@
+<template>
+  <view class="profile-card">
+    <view class="profile-top" @click="goHome">
+      <image class="avatar" :src="profile.avatar" mode="aspectFill" />
+      <view class="profile-info">
+        <text class="profile-label">我是</text>
+        <text class="profile-name">{{ profile.nickname }}</text>
+      </view>
+    </view>
+
+    <text class="profile-intro">{{ profile.intro }}</text>
+
+    <view class="bilibili-link" @click="goBilibili">
+      <text class="bilibili-link-text">前往 Bilibili 主页</text>
+    </view>
+  </view>
+</template>
+
+<script lang="uts">
+import { openExternalUrl } from '@/utils/site.uts'
+
+export default {
+  props: {
+    profile: {
+      type: Object,
+      required: true
+    }
+  },
+  methods: {
+    goBilibili() {
+      openExternalUrl(this.profile.bilibili as string)
+    },
+	goHome() {
+	  uni.reLaunch({
+	    url: '/pages/home/index'
+	  })
+	}
+  }
+}
+</script>
+
+<style>
+.profile-card {
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.profile-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 34px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+.profile-info {
+  margin-left: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.profile-name {
+  margin-top: 4px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.profile-intro {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #4b5563;
+}
+
+.bilibili-link {
+  margin-top: 16px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #6F7FD9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bilibili-link-text {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .profile-card {
+    padding: 16px;
+  }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+  }
+
+  .profile-name {
+    font-size: 20px;
+  }
+
+  .profile-intro {
+    font-size: 13px;
+    line-height: 21px;
+  }
+}
+</style>

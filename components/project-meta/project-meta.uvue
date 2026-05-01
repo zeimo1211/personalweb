@@ -1,0 +1,141 @@
+<template>
+	<view class="meta-grid">
+		<view class="meta-card">
+			<view class="meta-top">
+				<text class="meta-label">官服 GUID</text>
+				<view class="copy-btn" @click="copyText(project.officialGuid)">
+					<text class="copy-btn-text">复制</text>
+				</view>
+			</view>
+			<text class="meta-value">{{ project.officialGuid }}</text>
+		</view>
+
+		<view class="meta-card">
+			<view class="meta-top">
+				<text class="meta-label">B服 GUID</text>
+				<view class="copy-btn" @click="copyText(project.bilibiliGuid)">
+					<text class="copy-btn-text">复制</text>
+				</view>
+			</view>
+			<text class="meta-value">{{ project.bilibiliGuid }}</text>
+		</view>
+
+		<view class="meta-card">
+			<text class="meta-label">玩法类型</text>
+			<text class="meta-value">{{ project.type }}</text>
+		</view>
+
+		<view class="meta-card">
+			<text class="meta-label">支持设备</text>
+			<text class="meta-value">{{ deviceText }}</text>
+		</view>
+	</view>
+</template>
+
+<script lang="uts">
+	export default {
+		props: {
+			project: {
+				type: Object,
+				required: true
+			}
+		},
+		computed: {
+			deviceText() : string {
+				const list = this.project.devices as string[]
+				return list.join(' / ')
+			}
+		},
+		methods: {
+			copyText(value : string) {
+				uni.setClipboardData({
+					data: value,
+					success: () => {
+						uni.showToast({
+							title: '已复制',
+							icon: 'none'
+						})
+					}
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.meta-grid {
+		margin-top: 18px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.meta-card {
+		width: calc(50% - 6px);
+		padding: 16px 18px;
+		background-color: #f9fafb;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 14px;
+	}
+
+	.meta-top {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.meta-label {
+		font-size: 13px;
+		color: #6b7280;
+		font-weight: 600;
+	}
+
+	.meta-value {
+		margin-top: 8px;
+		font-size: 17px;
+		font-weight: 700;
+		line-height: 24px;
+		color: #111827;
+		word-break: break-all;
+	}
+
+	.copy-btn {
+		height: 28px;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-radius: 8px;
+		background-color: #EEF1FF;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #bfdbfe;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.copy-btn-text {
+		font-size: 12px;
+		color: #6F7FD9;
+		font-weight: 600;
+	}
+
+	@media screen and (max-width: 768px) {
+		.meta-grid {
+			gap: 10px;
+		}
+
+		.meta-card {
+			width: 100%;
+			padding: 14px;
+		}
+
+		.meta-value {
+			font-size: 15px;
+			line-height: 22px;
+		}
+	}
+</style>

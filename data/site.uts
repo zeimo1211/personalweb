@@ -1,0 +1,309 @@
+import { reactive } from 'vue'
+
+export type Profile = {
+	nickname : string
+	QQ : string
+	avatar : string
+	bilibili : string
+	intro : string
+	steamID : string
+	genshinID : string
+	honkai3ID : string
+	starrailID : string
+}
+
+export type GameExperience = {
+	id : string
+	title : string
+	cover : string
+	duration : string
+	progress : string
+	score : string
+	review : string
+}
+
+export type FavoriteStage = {
+	id : string
+	title : string
+	subtitle : string
+	image : string
+	desc : string
+	note : string
+}
+
+export type FavoriteReason = {
+	id : string
+	title : string
+	desc : string
+}
+
+export type FavoriteGalleryItem = {
+	id : string
+	image : string
+	caption : string
+}
+
+export type FavoriteCharacter = {
+	name : string
+	enName : string
+	heroImage : string
+	slogan : string
+	intro : string
+	ending : string
+	stages : FavoriteStage[]
+	reasons : FavoriteReason[]
+	gallery : FavoriteGalleryItem[]
+}
+
+export type Project = {
+	id : string
+	title : string
+	cover : string
+	gallery : string[]
+	officialGuid : string
+	bilibiliGuid : string
+	playerCount : string
+	type : string
+	devices : string[]
+	status : string
+	tags : string[]
+	intro : string
+	gameplay : string[]
+}
+
+export type DigitalItem = {
+	id : string
+	title : string
+	cover : string
+	category : string
+	status : string
+	score : string
+	spec : string
+	review : string
+}
+
+export type Section = {
+	id : string
+	name : string
+	desc : string
+	projects : Project[]
+}
+
+export type SiteData = {
+	profile : Profile
+	sections : Section[]
+	games : GameExperience[]
+	digitalDIY : DigitalItem[]
+	favorite : FavoriteCharacter
+}
+
+export const siteData = reactive<SiteData>({
+	profile: {
+		nickname: '无边',
+		QQ: '2878934647',
+		avatar: '/static/image/avatar.webp',
+		bilibili: 'https://space.bilibili.com/627980585',
+		intro: '为世界上所有的美好而战！',
+		steamID: '1224860109',
+		genshinID: '141533694',
+		honkai3ID: '264191223',
+		starrailID: '100689523'
+	},
+
+	// 改为运行时从 /static/data/sections.json 读取
+	sections: [],
+
+	// 改为运行时从 /static/data/games.json 读取
+	games: [],
+	
+	digitalDIY : [],
+
+	favorite: {
+		name: '琪亚娜',
+		enName: 'Kiana Kaslana',
+		heroImage: '/static/image/favorite/favorite-kiana-hero.webp',
+		slogan: '我会把这个不完美的世界，变成我们所期望的样子。',
+		intro: '这把剑连接着我们，它会烧尽漆黑的天空，让光照进更远的地方！',
+		ending: '即使这个世界不那么美好，也要永远抱以希望',
+		stages: [
+			{
+				id: 'stage-1',
+				title: '最初的她',
+				subtitle: '稚气、直率、带着一点横冲直撞',
+				image: '/static/image/favorite/favorite-kiana-stage-1.webp',
+				desc: '最开始的琪亚娜给人的感觉是热闹、直接、带点孩子气。她并不成熟，也没有真正理解自己将要面对的东西。',
+				note: '这一阶段的她还不知道，命运会把她推向多么沉重的远方。'
+			},
+			{
+				id: 'stage-2',
+				title: '开始面对真相',
+				subtitle: '迷茫、冲击、第一次被现实撕开裂口',
+				image: '/static/image/favorite/favorite-kiana-stage-2.webp',
+				desc: '当真相一点点靠近，她开始面对身份、责任和失控带来的痛苦。这个阶段的她不再只是那个无忧无虑往前冲的人。',
+				note: '从这里开始，我真正意识到她的成长不是“变强”，而是“被迫直面自己”。'
+			},
+			{
+				id: 'stage-3',
+				title: '跌落与挣扎',
+				subtitle: '最让人心疼，也最能看见她灵魂重量的时候',
+				image: '/static/image/favorite/favorite-kiana-stage-3.webp',
+				desc: '她经历了挣扎、怀疑、自责与痛苦，那些情绪让她不再轻盈，却也让她真正有了厚度。',
+				note: '她最打动我的地方，不是不会痛，而是明明会痛却还是继续往前走。'
+			},
+			{
+				id: 'stage-4',
+				title: '学会承担',
+				subtitle: '从被保护的人，慢慢变成守护别人的人',
+				image: '/static/image/favorite/favorite-kiana-stage-4.webp',
+				desc: '她开始理解“守护”的意义，也开始明白成长不是摆脱脆弱，而是即使脆弱也愿意承担。',
+				note: '这一阶段的她，已经不再只是被命运推着走。'
+			},
+			{
+				id: 'stage-5',
+				title: '成为现在的她',
+				subtitle: '温柔、坚定，也终于真正理解了自己',
+				image: '/static/image/favorite/favorite-kiana-stage-5.webp',
+				desc: '走到后来的琪亚娜，已经拥有了能够独自站立的力量。那种力量不是锋利，而是经历过风暴之后仍愿意拥抱世界。',
+				note: '她最终成为了她自己，也成为了我最喜欢的样子。'
+			}
+		],
+		reasons: [
+			{
+				id: 'reason-1',
+				title: '她的成长很真实',
+				desc: '我喜欢她不是因为她从一开始就完美，而是因为她真的经历了迷茫、失控、自我怀疑，再一点点学会面对。'
+			},
+			{
+				id: 'reason-2',
+				title: '她始终没有失去善良',
+				desc: '即使在最痛的时候，她也没有变成冷漠的人。那种始终保留着的温柔，让她特别珍贵。'
+			},
+			{
+				id: 'reason-3',
+				title: '她让我理解“承担”',
+				desc: '她让我觉得成长从来不是一夜之间发生的，而是在一次次选择里慢慢长出来的。'
+			}
+		],
+		gallery: [
+			{
+				id: 'gallery-1',
+				image: '/static/image/favorite/favorite-kiana-memory-1.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-2',
+				image: '/static/image/favorite/favorite-kiana-memory-2.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-3',
+				image: '/static/image/favorite/favorite-kiana-memory-3.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-4',
+				image: '/static/image/favorite/favorite-kiana-memory-4.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-5',
+				image: '/static/image/favorite/favorite-kiana-memory-5.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-6',
+				image: '/static/image/favorite/favorite-kiana-memory-6.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-7',
+				image: '/static/image/favorite/favorite-kiana-memory-7.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-8',
+				image: '/static/image/favorite/favorite-kiana-memory-8.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-9',
+				image: '/static/image/favorite/favorite-kiana-memory-9.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-10',
+				image: '/static/image/favorite/favorite-kiana-memory-10.webp',
+				caption: ''
+			},
+			{
+				id: 'gallery-11',
+				image: '/static/image/favorite/favorite-kiana-memory-11.webp',
+				caption: ''
+			}
+		]
+	}
+})
+
+function isArrayData(data: any): boolean {
+	return Array.isArray(data)
+}
+
+function loadSections() {
+	uni.request({
+		url: '/static/data/sections.json',
+		method: 'GET',
+		success: (res) => {
+			const data = res.data
+			if (isArrayData(data)) {
+				siteData.sections = data as Section[]
+			} else {
+				console.error('sections.json 返回的不是数组：', data)
+			}
+		},
+		fail: (err) => {
+			console.error('sections.json 加载失败：', err)
+		}
+	})
+}
+
+function loadGames() {
+	uni.request({
+		url: '/static/data/games.json',
+		method: 'GET',
+		success: (res) => {
+			const data = res.data
+			if (isArrayData(data)) {
+				siteData.games = data as GameExperience[]
+			} else {
+				console.error('games.json 返回的不是数组：', data)
+			}
+		},
+		fail: (err) => {
+			console.error('games.json 加载失败：', err)
+		}
+	})
+}
+
+function loadDigitalDIY() {
+	uni.request({
+		url: '/static/data/digital-diy.json',
+		method: 'GET',
+		success: (res) => {
+			const data = res.data
+			if (isArrayData(data)) {
+				siteData.digitalDIY = data as DigitalItem[]
+				console.debug(data)
+			} else {
+				console.error('games.json 返回的不是数组：', data)
+			}
+		},
+		fail: (err) => {
+			console.error('games.json 加载失败：', err)
+		}
+	})
+}
+
+// 模块加载时自动读取
+loadSections()
+loadGames()
+loadDigitalDIY()

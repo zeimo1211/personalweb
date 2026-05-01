@@ -1,0 +1,92 @@
+<template>
+  <view class="sidebar">
+    <profile-card :profile="profile" />
+
+    <section-nav
+      :sections="sections"
+      :activeSectionId="activeSectionId"
+    />
+
+    <view class="tip-card">
+      <text class="tip-title">施工中</text>
+      <text class="tip-text">其他内容正在慢慢补完，这里以后还会继续长出新的东西。</text>
+    </view>
+  </view>
+</template>
+
+<script lang="uts">
+import ProfileCard from '@/components/profile-card/profile-card.uvue'
+import SectionNav from '@/components/section-nav/section-nav.uvue'
+
+export default {
+  components: {
+    ProfileCard,
+    SectionNav
+  },
+  props: {
+    profile: {
+      type: Object,
+      required: true
+    },
+    sections: {
+      type: Array,
+      required: true
+    },
+    activeSectionId: {
+      type: String,
+      default: ''
+    }
+  }
+}
+</script>
+
+<style>
+.sidebar {
+  width: 280px;
+  min-height: 100vh;
+  padding: 20px 18px;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #e5e7eb;
+  background-color: #ffffff;
+}
+
+.tip-card {
+  margin-top: 20px;
+  padding: 16px;
+  background: linear-gradient(180deg, #fcfcfd 0%, #f8fafc 100%);
+  border-width: 1px;
+  border-style: dashed;
+  border-color: #d1d5db;
+  border-radius: 14px;
+}
+
+.tip-title {
+  font-size: 13px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.tip-text {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 22px;
+  color: #6b7280;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    padding: 16px;
+    border-right-width: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #e5e7eb;
+  }
+
+  .tip-card {
+    margin-top: 16px;
+  }
+}
+</style>

@@ -1,0 +1,552 @@
+<template>
+	<view class="page">
+		<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="favorite" />
+
+		<scroll-view class="content" scroll-y="true">
+			<view class="hero-card">
+				<view class="hero-main">
+					<view class="hero-text">
+						<text class="hero-kicker">MY FAVORITE</text>
+						<text class="hero-title">{{ site.favorite.name }}</text>
+						<text class="hero-en-title">{{ site.favorite.enName }}</text>
+						<text class="hero-slogan">{{ site.favorite.slogan }}</text>
+						<text class="hero-intro">{{ site.favorite.intro }}</text>
+					</view>
+
+					<view class="hero-image-wrap">
+						<image class="hero-image" :src="site.favorite.heroImage" mode="aspectFit" />
+					</view>
+				</view>
+			</view>
+
+			<view class="section-block">
+				<view class="section-head">
+					<text class="section-kicker">成长时间线</text>
+					<text class="section-title">她一路走来的样子</text>
+				</view>
+
+				<view class="timeline-list">
+					<view v-for="(item, index) in site.favorite.stages" :key="item.id" class="timeline-card">
+						<view class="timeline-index-wrap">
+							<view class="timeline-index">
+								<text class="timeline-index-text">{{ index + 1 }}</text>
+							</view>
+							<view v-if="index != site.favorite.stages.length - 1" class="timeline-line"></view>
+						</view>
+
+						<view class="timeline-content">
+							<view class="timeline-media-wrap">
+								<image class="timeline-image" :src="item.image" mode="aspectFit" />
+							</view>
+
+							<view class="timeline-text">
+								<text class="timeline-title">{{ item.title }}</text>
+								<text class="timeline-subtitle">{{ item.subtitle }}</text>
+								<text class="timeline-desc">{{ item.desc }}</text>
+
+								<view class="timeline-note-wrap">
+									<text class="timeline-note-label">我的感受</text>
+									<text class="timeline-note">{{ item.note }}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+
+			<view class="section-block">
+				<view class="section-head">
+					<text class="section-kicker">喜欢的理由</text>
+					<text class="section-title">我为什么最喜欢她</text>
+				</view>
+
+				<view class="reason-grid">
+					<view v-for="item in site.favorite.reasons" :key="item.id" class="reason-card">
+						<text class="reason-title">{{ item.title }}</text>
+						<text class="reason-desc">{{ item.desc }}</text>
+					</view>
+				</view>
+			</view>
+
+			<view class="section-block">
+				<view class="section-head">
+					<text class="section-kicker">记忆画廊</text>
+					<text class="section-title">我想留住的几个瞬间</text>
+				</view>
+
+				<view class="gallery-grid">
+					<view v-for="item in site.favorite.gallery" :key="item.id" class="gallery-card">
+						<view class="gallery-image-wrap">
+							<image class="gallery-image" :src="item.image" mode="aspectFit" />
+						</view>
+						<text class="gallery-caption">{{ item.caption }}</text>
+					</view>
+				</view>
+			</view>
+
+			<view class="ending-card">
+				<text class="ending-text">{{ site.favorite.ending }}</text>
+			</view>
+		</scroll-view>
+	</view>
+</template>
+
+<script lang="uts">
+	import { siteData } from '@/data/site.uts'
+	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+
+	export default {
+		components: {
+			SiteSidebar
+		},
+		data() {
+			return {
+				site: siteData
+			}
+		}
+	}
+</script>
+
+<style>
+	.page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: row;
+		background-color: #f7f9fc;
+	}
+
+	.content {
+		flex: 1;
+		height: 100vh;
+		padding: 24px;
+	}
+
+	.hero-card {
+		padding: 28px;
+		background: linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%);
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 22px;
+		box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
+	}
+
+	.hero-main {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 24px;
+	}
+
+	.hero-text {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.hero-kicker {
+		font-size: 12px;
+		color: #6F7FD9;
+		font-weight: 700;
+		letter-spacing: 1px;
+	}
+
+	.hero-title {
+		margin-top: 10px;
+		font-size: 42px;
+		line-height: 52px;
+		color: #111827;
+		font-weight: 800;
+	}
+
+	.hero-en-title {
+		margin-top: 6px;
+		font-size: 18px;
+		color: #6b7280;
+		font-weight: 500;
+	}
+
+	.hero-slogan {
+		margin-top: 18px;
+		font-size: 18px;
+		line-height: 30px;
+		color: #1f3b73;
+		font-weight: 600;
+	}
+
+	.hero-intro {
+		margin-top: 16px;
+		font-size: 15px;
+		line-height: 28px;
+		color: #4b5563;
+	}
+
+	.hero-image-wrap {
+		width: 360px;
+		height: 360px;
+		flex-shrink: 0;
+		border-radius: 22px;
+		background: linear-gradient(180deg, #EEF1FF 0%, #EEF1FF 100%);
+		border-width: 1px;
+		border-style: solid;
+		border-color: #D8DEFF;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.hero-image {
+		width: 100%;
+		height: 100%;
+	}
+
+	.section-block {
+		margin-top: 22px;
+		padding: 24px;
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 22px;
+		box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+	}
+
+	.section-head {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.section-kicker {
+		font-size: 12px;
+		color: #6F7FD9;
+		font-weight: 700;
+	}
+
+	.section-title {
+		margin-top: 8px;
+		font-size: 28px;
+		line-height: 38px;
+		color: #111827;
+		font-weight: 800;
+	}
+
+	.timeline-list {
+		margin-top: 24px;
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+
+	.timeline-card {
+		display: flex;
+		flex-direction: row;
+		gap: 16px;
+	}
+
+	.timeline-index-wrap {
+		width: 36px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex-shrink: 0;
+	}
+
+	.timeline-index {
+		width: 36px;
+		height: 36px;
+		border-radius: 18px;
+		background-color: #6F7FD9;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.timeline-index-text {
+		font-size: 14px;
+		color: #ffffff;
+		font-weight: 700;
+	}
+
+	.timeline-line {
+		width: 2px;
+		flex: 1;
+		margin-top: 8px;
+		background-color: #D8DEFF;
+	}
+
+	.timeline-content {
+		flex: 1;
+		padding: 16px;
+		border-radius: 18px;
+		background-color: #EEF1FF;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5eefc;
+		display: flex;
+		flex-direction: row;
+		gap: 18px;
+	}
+
+	.timeline-media-wrap {
+		width: 260px;
+		height: 146px;
+		border-radius: 14px;
+		background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.timeline-image {
+		width: 100%;
+		height: 100%;
+	}
+
+	.timeline-text {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.timeline-title {
+		font-size: 24px;
+		line-height: 32px;
+		color: #111827;
+		font-weight: 800;
+	}
+
+	.timeline-subtitle {
+		margin-top: 8px;
+		font-size: 14px;
+		line-height: 22px;
+		color: #6F7FD9;
+		font-weight: 600;
+	}
+
+	.timeline-desc {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 26px;
+		color: #4b5563;
+	}
+
+	.timeline-note-wrap {
+		margin-top: 14px;
+		padding: 12px 14px;
+		border-radius: 12px;
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #D8DEFF;
+	}
+
+	.timeline-note-label {
+		font-size: 12px;
+		color: #6b7280;
+		font-weight: 700;
+	}
+
+	.timeline-note {
+		margin-top: 6px;
+		font-size: 14px;
+		line-height: 24px;
+		color: #1f3b73;
+	}
+
+	.reason-grid {
+		margin-top: 20px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 16px;
+	}
+
+	.reason-card {
+		width: calc(33.3333% - 11px);
+		padding: 18px;
+		border-radius: 18px;
+		background: linear-gradient(180deg, #ffffff 0%, #EEF1FF 100%);
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+	}
+
+	.reason-title {
+		font-size: 20px;
+		line-height: 28px;
+		color: #111827;
+		font-weight: 700;
+	}
+
+	.reason-desc {
+		margin-top: 10px;
+		font-size: 14px;
+		line-height: 24px;
+		color: #4b5563;
+	}
+
+	.gallery-grid {
+		margin-top: 20px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 16px;
+	}
+
+	.gallery-card {
+		width: calc(25% - 12px);
+		padding: 10px;
+		border-radius: 16px;
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+	}
+
+	.gallery-image-wrap {
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		border-radius: 14px;
+		background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.gallery-image {
+		width: 100%;
+		height: 100%;
+	}
+
+	.gallery-caption {
+		margin-top: 10px;
+		font-size: 13px;
+		line-height: 20px;
+		color: #4b5563;
+		text-align: center;
+	}
+
+	.ending-card {
+		margin-top: 22px;
+		margin-bottom: 24px;
+		padding: 24px;
+		border-radius: 22px;
+		background: linear-gradient(135deg, #EEF1FF 0%, #EEF1FF 100%);
+		border-width: 1px;
+		border-style: solid;
+		border-color: #D8DEFF;
+	}
+
+	.ending-text {
+		font-size: 18px;
+		line-height: 32px;
+		color: #1f3b73;
+		font-weight: 600;
+		text-align: center;
+	}
+
+	@media screen and (max-width: 768px) {
+		.page {
+			flex-direction: column;
+		}
+
+		.content {
+			width: 100%;
+			height: auto;
+			padding: 16px;
+		}
+
+		.hero-card {
+			padding: 18px;
+		}
+
+		.hero-main {
+			flex-direction: column;
+			gap: 16px;
+		}
+
+		.hero-title {
+			font-size: 30px;
+			line-height: 38px;
+		}
+
+		.hero-en-title {
+			font-size: 16px;
+		}
+
+		.hero-slogan {
+			font-size: 15px;
+			line-height: 24px;
+		}
+
+		.hero-intro {
+			font-size: 14px;
+			line-height: 24px;
+		}
+
+		.hero-image-wrap {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 1 / 1;
+		}
+
+		.section-block {
+			margin-top: 16px;
+			padding: 18px;
+		}
+
+		.section-title {
+			font-size: 22px;
+			line-height: 30px;
+		}
+
+		.timeline-card {
+			gap: 12px;
+		}
+
+		.timeline-content {
+			flex-direction: column;
+			gap: 12px;
+			padding: 12px;
+		}
+
+		.timeline-media-wrap {
+			width: 100%;
+			height: auto;
+			aspect-ratio: 16 / 9;
+		}
+
+		.timeline-title {
+			font-size: 20px;
+			line-height: 28px;
+		}
+
+		.reason-card {
+			width: 100%;
+		}
+
+		.gallery-card {
+			width: 100%;
+		}
+
+		.ending-card {
+			margin-top: 16px;
+			padding: 18px;
+		}
+
+		.ending-text {
+			font-size: 16px;
+			line-height: 28px;
+		}
+	}
+</style>

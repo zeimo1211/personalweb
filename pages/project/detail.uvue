@@ -1,0 +1,380 @@
+<template>
+  <view class="page" v-if="project != null">
+    <site-sidebar
+      :profile="site.profile"
+      :sections="site.sections"
+      :activeSectionId="sectionId"
+    />
+
+    <scroll-view class="content" scroll-y="true">
+      <view class="detail-shell">
+        <view class="hero-section">
+          <view class="hero-media">
+            <view class="hero-cover-wrap">
+              <image class="hero-cover" :src="project.cover" mode="aspectFit" />
+            </view>
+          </view>
+
+          <view class="hero-info">
+            <view class="detail-header">
+              <text class="detail-title">{{ project.title }}</text>
+              <view class="status-badge">
+                <text class="status-badge-text">{{ project.status }}</text>
+              </view>
+            </view>
+
+            <tag-list :tags="project.tags" />
+            <project-meta :project="project" />
+          </view>
+        </view>
+
+        <view class="content-section">
+          <view class="intro-panel">
+            <view class="info-block">
+              <text class="panel-title">奇域说明</text>
+              <text class="intro-summary">{{ project.intro }}</text>
+            </view>
+
+            <view class="info-divider"></view>
+
+            <view class="info-block">
+              <text class="panel-title">玩法介绍</text>
+
+              <view class="gameplay-list">
+                <view
+                  v-for="(item, index) in project.gameplay"
+                  :key="index"
+                  class="gameplay-item"
+                >
+                  <text class="gameplay-dot">•</text>
+                  <text class="gameplay-text">{{ item }}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+
+          <view class="gallery-panel">
+            <project-gallery :images="project.gallery" />
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="page" v-else>
+    <site-sidebar
+      :profile="site.profile"
+      :sections="site.sections"
+      activeSectionId=""
+    />
+
+    <view class="content empty-wrap">
+      <text class="empty-title">未找到该项目</text>
+      <view class="primary-btn" @click="goHome">
+        <text class="primary-btn-text">返回首页</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script lang="uts">
+import { siteData } from '@/data/site.uts'
+import { getProjectById, getProjectSection } from '@/utils/site.uts'
+import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+import ProjectMeta from '@/components/project-meta/project-meta.uvue'
+import ProjectGallery from '@/components/project-gallery/project-gallery.uvue'
+import TagList from '@/components/tag-list/tag-list.uvue'
+
+export default {
+  components: {
+    SiteSidebar,
+    ProjectMeta,
+    ProjectGallery,
+    TagList
+  },
+  data() {
+    return {
+      site: siteData,
+      project: null as any,
+      sectionId: ''
+    }
+  },
+  onLoad(options) {
+    const projectId = options?.projectId || ''
+    this.project = getProjectById(projectId)
+    const section = getProjectSection(projectId)
+    this.sectionId = section ? section.id : ''
+  },
+  methods: {
+    goHome() {
+      uni.reLaunch({
+        url: '/pages/home/index'
+      })
+    }
+  }
+}
+</script>
+
+<style>
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-color: #f9fafb;
+}
+
+.content {
+  flex: 1;
+  height: 100vh;
+  padding: 20px;
+}
+
+.detail-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hero-section {
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.05);
+  padding: 14px;
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.hero-media {
+  width: 30%;
+}
+
+.hero-cover-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-cover {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.detail-title {
+  flex: 1;
+  font-size: 80px;
+  font-weight: 1000;
+  line-height: 100px;
+  color: #111827;
+}
+
+.status-badge {
+  margin-left: 12px;
+  height: 32px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-radius: 16px;
+  background-color: #ecfdf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-badge-text {
+  font-size: 13px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+}
+
+.intro-panel {
+  width: 40%;
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+}
+
+.gallery-panel {
+  flex: 1;
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-divider {
+  height: 1px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  background-color: #e5e7eb;
+}
+
+.panel-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.intro-summary {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 26px;
+  color: #4b5563;
+}
+
+.gameplay-list {
+  margin-top: 12px;
+}
+
+.gameplay-item {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.gameplay-dot {
+  width: 16px;
+  font-size: 15px;
+  line-height: 26px;
+  color: #4b5563;
+}
+
+.gameplay-text {
+  flex: 1;
+  font-size: 15px;
+  line-height: 26px;
+  color: #4b5563;
+}
+
+.empty-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-title {
+  font-size: 24px;
+  color: #111827;
+  font-weight: 600;
+}
+
+.primary-btn {
+  margin-top: 20px;
+  width: 120px;
+  height: 42px;
+  border-radius: 8px;
+  background-color: #6F7FD9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-btn-text {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+  .page {
+    flex-direction: column;
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+  }
+
+  .detail-shell {
+    gap: 12px;
+  }
+
+  .hero-section {
+    padding: 12px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-media {
+    width: 100%;
+  }
+
+  .detail-title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .detail-header {
+    gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .status-badge {
+    margin-left: 0;
+  }
+
+  .content-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .intro-panel {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .gallery-panel {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .panel-title {
+    font-size: 20px;
+  }
+}
+</style>

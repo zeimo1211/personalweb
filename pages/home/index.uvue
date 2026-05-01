@@ -1,0 +1,410 @@
+<template>
+  <view class="page">
+    <!-- 背景图层 -->
+    <view class="page-bg">
+      <image
+        class="page-bg-image"
+        src="/static/image/home-kiana.webp"
+        mode="aspectFill"
+      />
+      <view class="page-bg-mask"></view>
+    </view>
+
+    <site-sidebar
+      :profile="site.profile"
+      :sections="site.sections"
+      activeSectionId=""
+    />
+
+    <scroll-view class="content" scroll-y="true">
+      <view class="hero-card">
+        <text class="hero-kicker">PERSONAL SITE</text>
+        <text class="hero-title">无边的奇想角落</text>
+        <text class="hero-slogan">
+          记录突然的想法与一些慢慢生长出来的奇域。
+        </text>
+
+        <view class="hero-divider"></view>
+
+        <view class="hero-info-list">
+          <view class="hero-info-item">
+            <text class="hero-info-label">正在做的事</text>
+            <text class="hero-info-value">学业 / 奇域制作</text>
+          </view>
+
+          <view class="hero-info-item">
+            <text class="hero-info-label">内容方向</text>
+            <text class="hero-info-value">计算机 / AI / 探索解谜、关卡设计</text>
+          </view>
+
+          <view class="hero-info-item">
+            <text class="hero-info-label">一句话介绍</text>
+            <text class="hero-info-value">为世界上所有的美好而战！</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="recommend-wrap">
+        <view class="section-head">
+          <view>
+            <text class="section-subtitle">推荐分区</text>
+            <text class="section-title">从这里进入我的奇域</text>
+          </view>
+        </view>
+
+        <view
+          v-if="firstSection"
+          class="section-entry-card"
+          @click="goFirstSection"
+        >
+          <view class="section-entry-main">
+            <text class="section-entry-name">{{ firstSection.name }}</text>
+            <text class="section-entry-desc">{{ firstSection.desc }}</text>
+
+            <view class="section-entry-meta">
+              <view class="section-entry-badge">
+                <text class="section-entry-badge-text">
+                  {{ firstSection.projects.length }} 个奇域
+                </text>
+              </view>
+
+              <view class="section-entry-action">
+                <text class="section-entry-action-text">进入分区</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</template>
+
+<script lang="uts">
+import { siteData } from '@/data/site.uts'
+import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+
+export default {
+  components: {
+    SiteSidebar
+  },
+  data() {
+    return {
+      site: siteData
+    }
+  },
+  computed: {
+    firstSection() {
+      return this.site.sections.length > 0 ? this.site.sections[0] : null
+    }
+  },
+  methods: {
+    goFirstSection() {
+      if (!this.firstSection) return
+
+      uni.navigateTo({
+        url: '/pages/section/index?sectionId=' + this.firstSection.id
+      })
+    }
+  }
+}
+</script>
+
+<style>
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-color: #f9fafb;
+  overflow: hidden;
+}
+
+/* 背景层 */
+.page-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/*
+  核心逻辑：
+  1. 高度始终撑满容器
+  2. 宽度按比例自动扩展
+  3. 最小宽度至少 100%，避免宽屏时露底
+  4. 窗口变窄时会优先保高度，多余宽度被裁掉
+*/
+.page-bg-image {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  height: 100%;
+  width: auto;
+  min-width: 100%;
+  transform: translateX(-50%);
+}
+
+/*
+  -50% 表示严格居中
+  -42% 表示稍微向左露出更多右侧内容，
+  也就是“优先隐藏图片左侧”
+  你可以改成：
+  -45% / -40% / -35%
+  数值越大（越接近 0），左侧裁得越多
+*/
+
+.page-bg-mask {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(249, 250, 251, 0.10) 0%,
+    rgba(249, 250, 251, 0.55) 35%,
+    rgba(249, 250, 251, 0.88) 70%,
+    rgba(249, 250, 251, 0.96) 100%
+  );
+}
+
+/* 前景内容放到背景上层 */
+.content,
+.hero-card,
+.recommend-wrap,
+.section-entry-card {
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  flex: 1;
+  height: 100vh;
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+.hero-card {
+  padding: 30px 32px;
+  background: rgba(255, 255, 255, 0.82);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(229, 231, 235, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+.hero-kicker {
+  font-size: 12px;
+  color: #6F7FD9;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hero-title {
+  margin-top: 12px;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 52px;
+  color: #111827;
+}
+
+.hero-slogan {
+  margin-top: 14px;
+  max-width: 760px;
+  font-size: 17px;
+  line-height: 30px;
+  color: #4b5563;
+}
+
+.hero-divider {
+  margin-top: 24px;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+.hero-info-list {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hero-info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-info-label {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.hero-info-value {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 24px;
+  color: #111827;
+}
+
+.recommend-wrap {
+  margin-top: 28px;
+}
+
+.section-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-subtitle {
+  font-size: 13px;
+  color: #6F7FD9;
+  font-weight: 600;
+}
+
+.section-title {
+  margin-top: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.section-entry-card {
+  margin-top: 18px;
+  max-width: 620px;
+  background-color: rgba(255, 255, 255, 0.88);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+  backdrop-filter: blur(6px);
+}
+
+.section-entry-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-entry-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.section-entry-desc {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 25px;
+  color: #4b5563;
+}
+
+.section-entry-meta {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-entry-badge {
+  height: 34px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 17px;
+  background-color: #f8fafc;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-entry-badge-text {
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.section-entry-action {
+  height: 38px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 10px;
+  background-color: #6F7FD9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-entry-action-text {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .page {
+    flex-direction: column;
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding: 16px;
+  }
+
+  .hero-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    line-height: 38px;
+  }
+
+  .hero-slogan {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    line-height: 30px;
+  }
+
+  .section-entry-card {
+    max-width: 100%;
+    padding: 18px;
+  }
+
+  .section-entry-meta {
+    margin-top: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* 竖屏/窄屏下让背景更偏右，隐藏更多左边 */
+  .page-bg-image {
+    left: 58%;
+    transform: translateX(-50%);
+  }
+
+  .page-bg-mask {
+    background: linear-gradient(
+      180deg,
+      rgba(249, 250, 251, 0.18) 0%,
+      rgba(249, 250, 251, 0.62) 38%,
+      rgba(249, 250, 251, 0.90) 72%,
+      rgba(249, 250, 251, 0.97) 100%
+    );
+  }
+}
+</style>
