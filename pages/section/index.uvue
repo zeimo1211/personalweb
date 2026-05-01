@@ -1,236 +1,235 @@
 <template>
-  <view class="page" v-if="section != null">
-    <site-sidebar
-      :profile="site.profile"
-      :sections="site.sections"
-      :activeSectionId="section.id"
-    />
+	<view class="page" v-if="section != null">
+		<site-sidebar :profile="site.profile" :sections="site.sections" :activeSectionId="section.id" />
 
-    <scroll-view class="content" scroll-y="true">
-      <view class="section-banner">
-        <view class="section-banner-main">
-          <text class="section-subtitle">奇域列表</text>
-          <text class="section-title">{{ section.name }}</text>
-          <text class="section-desc">{{ section.desc }}</text>
-        </view>
+		<scroll-view class="content" scroll-y="true">
+			<view class="section-banner">
+				<view class="section-banner-main">
+					<text class="section-subtitle">奇域列表</text>
+					<text class="section-title">{{ section.name }}</text>
+					<text class="section-desc">{{ section.desc }}</text>
+				</view>
 
-        <view class="section-badge">
-          <text class="section-badge-text">{{ section.projects.length }} 个奇域</text>
-        </view>
-      </view>
+				<view class="section-badge">
+					<text class="section-badge-text">{{ section.projects.length }} 个奇域</text>
+				</view>
+			</view>
 
-      <view class="cards-grid">
-        <view
-          v-for="item in section.projects"
-          :key="item.id"
-          class="card-cell"
-        >
-          <project-card :project="item" />
-        </view>
-      </view>
-    </scroll-view>
-  </view>
+			<view class="cards-grid">
+				<view v-for="item in section.projects" :key="item.id" class="card-cell">
+					<project-card :project="item" />
+				</view>
+			</view>
+		</scroll-view>
+	</view>
 
-  <view class="page" v-else>
-    <site-sidebar
-      :profile="site.profile"
-      :sections="site.sections"
-      activeSectionId=""
-    />
+	<view class="page" v-else>
+		<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="" />
 
-    <view class="content empty-wrap">
-      <text class="empty-title">未找到该分区</text>
-      <view class="primary-btn" @click="goHome">
-        <text class="primary-btn-text">返回首页</text>
-      </view>
-    </view>
-  </view>
+		<view class="content empty-wrap">
+			<text class="empty-title">未找到该分区</text>
+			<view class="primary-btn" @click="goHome">
+				<text class="primary-btn-text">返回首页</text>
+			</view>
+		</view>
+	</view>
 </template>
 
 <script lang="uts">
-import { siteData } from '@/data/site.uts'
-import { getSectionById } from '@/utils/site.uts'
-import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
-import ProjectCard from '@/components/project-card/project-card.uvue'
+	import { siteData } from '@/data/site.uts'
+	import { getSectionById } from '@/utils/site.uts'
+	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+	import ProjectCard from '@/components/project-card/project-card.uvue'
 
-export default {
-  components: {
-    SiteSidebar,
-    ProjectCard
-  },
-  data() {
-    return {
-      site: siteData,
-      section: null as any
-    }
-  },
-  onLoad(options) {
-    const sectionId = options?.sectionId || ''
-    this.section = getSectionById(sectionId)
-  },
-  methods: {
-    goHome() {
-      uni.reLaunch({
-        url: '/pages/home/index'
-      })
-    }
-  }
-}
+	export default {
+		components: {
+			SiteSidebar,
+			ProjectCard
+		},
+		data() {
+			return {
+				site: siteData,
+				section: null as any
+			}
+		},
+		onLoad(options) {
+			const sectionId = options?.sectionId || ''
+			this.section = getSectionById(sectionId)
+		},
+		methods: {
+			goHome() {
+				uni.reLaunch({
+					url: '/pages/home/index'
+				})
+			}
+		}
+	}
 </script>
 
 <style>
-.page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  background-color: #f9fafb;
-}
+	.page {
+		height: 100vh;
+		min-height: 0;
+		display: flex;
+		flex-direction: row;
+		background-color: #f9fafb;
+		overflow: hidden;
+		position: relative;
+	}
 
-.content {
-  flex: 1;
-  height: 100vh;
-  padding: 28px;
-}
+	.content {
+		flex: 1;
+		height: 100%;
+		min-height: 0;
+		padding: 28px;
+		box-sizing: border-box;
+	}
 
-.section-banner {
-  padding: 24px 26px;
-  background-color: #ffffff;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #e5e7eb;
-  border-radius: 18px;
-  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-}
+	.section-banner {
+		padding: 24px 26px;
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 18px;
+		box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
 
-.section-banner-main {
-  flex: 1;
-}
+	.section-banner-main {
+		flex: 1;
+	}
 
-.section-subtitle {
-  font-size: 13px;
-  color: #6F7FD9;
-  font-weight: 600;
-}
+	.section-subtitle {
+		font-size: 13px;
+		color: #6F7FD9;
+		font-weight: 600;
+	}
 
-.section-title {
-  margin-top: 8px;
-  font-size: 30px;
-  font-weight: 700;
-  color: #111827;
-}
+	.section-title {
+		margin-top: 8px;
+		font-size: 30px;
+		font-weight: 700;
+		color: #111827;
+	}
 
-.section-desc {
-  margin-top: 12px;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4b5563;
-}
+	.section-desc {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 26px;
+		color: #4b5563;
+	}
 
-.section-badge {
-  margin-left: 16px;
-  height: 36px;
-  padding-left: 14px;
-  padding-right: 14px;
-  border-radius: 18px;
-  background-color: #f8fafc;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+	.section-badge {
+		margin-left: 16px;
+		height: 36px;
+		padding-left: 14px;
+		padding-right: 14px;
+		border-radius: 18px;
+		background-color: #f8fafc;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-.section-badge-text {
-  font-size: 13px;
-  color: #6b7280;
-  font-weight: 500;
-}
+	.section-badge-text {
+		font-size: 13px;
+		color: #6b7280;
+		font-weight: 500;
+	}
 
-.cards-grid {
-  margin-top: 22px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 18px;
-}
+	.cards-grid {
+		margin-top: 22px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 18px;
+	}
 
-.card-cell {
-  width: calc(45% - 9px);
-}
+	.card-cell {
+		width: calc(45% - 9px);
+	}
 
-.empty-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+	.empty-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 
-.empty-title {
-  font-size: 24px;
-  color: #111827;
-  font-weight: 600;
-}
+	.empty-title {
+		font-size: 24px;
+		color: #111827;
+		font-weight: 600;
+	}
 
-.primary-btn {
-  margin-top: 20px;
-  width: 120px;
-  height: 42px;
-  border-radius: 8px;
-  background-color: #6F7FD9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+	.primary-btn {
+		margin-top: 20px;
+		width: 120px;
+		height: 42px;
+		border-radius: 8px;
+		background-color: #6F7FD9;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 
-.primary-btn-text {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-}
+	.primary-btn-text {
+		color: #ffffff;
+		font-size: 14px;
+		font-weight: 500;
+	}
 
-@media screen and (max-width: 768px) {
-  .page {
-    flex-direction: column;
-  }
+	@media screen and (max-width: 768px) {
+		.page {
+			height: 100vh;
+			min-height: 0;
+			flex-direction: column;
+			overflow: hidden;
+		}
 
-  .content {
-    width: 100%;
-    height: auto;
-    padding: 16px;
-  }
+		.content {
+			width: 100%;
+			flex: 1;
+			height: 0;
+			min-height: 0;
+			padding: 16px;
+			box-sizing: border-box;
+		}
 
-  .section-banner {
-    padding: 18px;
-    flex-direction: column;
-    gap: 12px;
-  }
+		.section-banner {
+			padding: 18px;
+			flex-direction: column;
+			gap: 12px;
+		}
 
-  .section-title {
-    font-size: 24px;
-    line-height: 32px;
-  }
+		.section-title {
+			font-size: 24px;
+			line-height: 32px;
+		}
 
-  .section-desc {
-    font-size: 14px;
-    line-height: 24px;
-  }
+		.section-desc {
+			font-size: 14px;
+			line-height: 24px;
+		}
 
-  .section-badge {
-    margin-left: 0;
-  }
+		.section-badge {
+			margin-left: 0;
+		}
 
-  .cards-grid {
-    margin-top: 16px;
-    gap: 14px;
-  }
+		.cards-grid {
+			margin-top: 16px;
+			gap: 14px;
+		}
 
-  .card-cell {
-    width: 100%;
-  }
-}
+		.card-cell {
+			width: 100%;
+		}
+	}
 </style>

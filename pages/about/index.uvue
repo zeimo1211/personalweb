@@ -1,292 +1,294 @@
 <template>
-  <view class="page">
-    <site-sidebar
-      :profile="site.profile"
-      :sections="site.sections"
-      activeSectionId="about"
-    />
+	<view class="page">
+		<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="about" />
 
-    <scroll-view class="content" scroll-y="true">
-      <view class="panel">
-        <text class="title">关于这个站点</text>
-        <text class="desc">
-          这是一个个人网页，用于展示个人创作中的奇域内容、项目介绍与玩法设计。
-        </text>
+		<scroll-view class="content" scroll-y="true">
+			<view class="panel">
+				<text class="title">关于这个站点</text>
+				<text class="desc">
+					这是一个个人网页，用于展示个人创作中的奇域内容、项目介绍与玩法设计。
+				</text>
 
-        <view class="block">
-          <text class="block-title">当前目标</text>
-          <text class="block-text">顺利完成学业、奇域小有成就、未来就业顺利</text>
-        </view>
-		
-		<view class="block">
-		  <text class="block-title">终极目标</text>
-		  <text class="block-text">做一款宇宙无敌爆好玩的装机主题游戏</text>
-		</view>
+				<view class="block">
+					<text class="block-title">当前目标</text>
+					<text class="block-text">顺利完成学业、奇域小有成就、未来就业顺利</text>
+				</view>
 
-        <view class="block">
-          <text class="block-title">后悔的事</text>
-          <text class="block-text">还没有想好。</text>
-        </view>
+				<view class="block">
+					<text class="block-title">终极目标</text>
+					<text class="block-text">做一款宇宙无敌爆好玩的装机主题游戏</text>
+				</view>
 
-        <view class="block">
-          <text class="block-title">作者信息</text>
+				<view class="block">
+					<text class="block-title">后悔的事</text>
+					<text class="block-text">还没有想好。</text>
+				</view>
 
-          <view class="info-list">
-            <view class="info-item">
-              <view class="info-main">
-                <text class="info-label">昵称</text>
-                <text class="info-value">{{ site.profile.nickname }}</text>
-              </view>
-              <view class="copy-btn" @click="copyText(site.profile.nickname)">
-                <text class="copy-btn-text">复制</text>
-              </view>
-            </view>
+				<view class="block">
+					<text class="block-title">作者信息</text>
 
-            <view class="info-item">
-              <view class="info-main">
-                <text class="info-label">QQ</text>
-                <text class="info-value">{{ site.profile.QQ }}</text>
-              </view>
-              <view class="copy-btn" @click="copyText(site.profile.QQ)">
-                <text class="copy-btn-text">复制</text>
-              </view>
-            </view>
+					<view class="info-list">
+						<view class="info-item">
+							<view class="info-main">
+								<text class="info-label">昵称</text>
+								<text class="info-value">{{ site.profile.nickname }}</text>
+							</view>
+							<view class="copy-btn" @click="copyText(site.profile.nickname)">
+								<text class="copy-btn-text">复制</text>
+							</view>
+						</view>
 
-            <view class="info-item">
-              <view class="info-main">
-                <text class="info-label">steam好友Id</text>
-                <text class="info-value">{{ site.profile.steamID }}</text>
-              </view>
-              <view class="copy-btn" @click="copyText(site.profile.steamID)">
-                <text class="copy-btn-text">复制</text>
-              </view>
-            </view>
+						<view class="info-item">
+							<view class="info-main">
+								<text class="info-label">QQ</text>
+								<text class="info-value">{{ site.profile.QQ }}</text>
+							</view>
+							<view class="copy-btn" @click="copyText(site.profile.QQ)">
+								<text class="copy-btn-text">复制</text>
+							</view>
+						</view>
 
-            <view class="info-item">
-              <view class="info-main">
-                <text class="info-label">原神uid</text>
-                <text class="info-value">{{ site.profile.genshinID }}</text>
-              </view>
-              <view class="copy-btn" @click="copyText(site.profile.genshinID)">
-                <text class="copy-btn-text">复制</text>
-              </view>
-            </view>
-			
-			<view class="info-item">
-			  <view class="info-main">
-			    <text class="info-label">星穹铁道uid</text>
-			    <text class="info-value">{{ site.profile.starrailID }}</text>
-			  </view>
-			  <view class="copy-btn" @click="copyText(site.profile.starrailID)">
-			    <text class="copy-btn-text">复制</text>
-			  </view>
+						<view class="info-item">
+							<view class="info-main">
+								<text class="info-label">steam好友Id</text>
+								<text class="info-value">{{ site.profile.steamID }}</text>
+							</view>
+							<view class="copy-btn" @click="copyText(site.profile.steamID)">
+								<text class="copy-btn-text">复制</text>
+							</view>
+						</view>
+
+						<view class="info-item">
+							<view class="info-main">
+								<text class="info-label">原神uid</text>
+								<text class="info-value">{{ site.profile.genshinID }}</text>
+							</view>
+							<view class="copy-btn" @click="copyText(site.profile.genshinID)">
+								<text class="copy-btn-text">复制</text>
+							</view>
+						</view>
+
+						<view class="info-item">
+							<view class="info-main">
+								<text class="info-label">星穹铁道uid</text>
+								<text class="info-value">{{ site.profile.starrailID }}</text>
+							</view>
+							<view class="copy-btn" @click="copyText(site.profile.starrailID)">
+								<text class="copy-btn-text">复制</text>
+							</view>
+						</view>
+
+						<view class="info-item">
+							<view class="info-main">
+								<text class="info-label">崩坏三uid</text>
+								<text class="info-value">{{ site.profile.honkai3ID }}</text>
+							</view>
+							<view class="copy-btn" @click="copyText(site.profile.honkai3ID)">
+								<text class="copy-btn-text">复制</text>
+							</view>
+						</view>
+					</view>
+				</view>
 			</view>
-			
-			<view class="info-item">
-			  <view class="info-main">
-			    <text class="info-label">崩坏三uid</text>
-			    <text class="info-value">{{ site.profile.honkai3ID }}</text>
-			  </view>
-			  <view class="copy-btn" @click="copyText(site.profile.honkai3ID)">
-			    <text class="copy-btn-text">复制</text>
-			  </view>
-			</view>
-          </view>
-        </view>
-      </view>
-    </scroll-view>
-  </view>
+		</scroll-view>
+	</view>
 </template>
 
 <script lang="uts">
-import { siteData } from '@/data/site.uts'
-import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+	import { siteData } from '@/data/site.uts'
+	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
 
-export default {
-  components: {
-    SiteSidebar
-  },
-  data() {
-    return {
-      site: siteData
-    }
-  },
-  methods: {
-    copyText(value: string) {
-      uni.setClipboardData({
-        data: value,
-        success: () => {
-          uni.showToast({
-            title: '已复制',
-            icon: 'none'
-          })
-        }
-      })
-    }
-  }
-}
+	export default {
+		components: {
+			SiteSidebar
+		},
+		data() {
+			return {
+				site: siteData
+			}
+		},
+		methods: {
+			copyText(value : string) {
+				uni.setClipboardData({
+					data: value,
+					success: () => {
+						uni.showToast({
+							title: '已复制',
+							icon: 'none'
+						})
+					}
+				})
+			}
+		}
+	}
 </script>
 
 <style>
-.page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  background-color: #f9fafb;
-}
+	.page {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: row;
+		background-color: #f9fafb;
+	}
 
-.content {
-  flex: 1;
-  height: 100vh;
-  padding: 32px;
-}
+	.content {
+		flex: 1;
+		height: 100vh;
+		padding: 32px;
+	}
 
-.panel {
-  background-color: #ffffff;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #e5e7eb;
-  border-radius: 16px;
-  padding: 28px;
-}
+	.panel {
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 16px;
+		padding: 28px;
+	}
 
-.title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #111827;
-}
+	.title {
+		font-size: 28px;
+		font-weight: 700;
+		color: #111827;
+	}
 
-.desc {
-  margin-top: 12px;
-  font-size: 15px;
-  line-height: 26px;
-  color: #4b5563;
-}
+	.desc {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 26px;
+		color: #4b5563;
+	}
 
-.block {
-  margin-top: 24px;
-  padding: 20px;
-  background-color: #f9fafb;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #e5e7eb;
-  border-radius: 12px;
-}
+	.block {
+		margin-top: 24px;
+		padding: 20px;
+		background-color: #f9fafb;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 12px;
+	}
 
-.block-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-}
+	.block-title {
+		font-size: 18px;
+		font-weight: 600;
+		color: #111827;
+	}
 
-.block-text {
-  margin-top: 10px;
-  font-size: 15px;
-  line-height: 24px;
-  color: #4b5563;
-}
+	.block-text {
+		margin-top: 10px;
+		font-size: 15px;
+		line-height: 24px;
+		color: #4b5563;
+	}
 
-.info-list {
-  margin-top: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+	.info-list {
+		margin-top: 14px;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
 
-.info-item {
-  padding: 14px 16px;
-  background-color: #ffffff;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #e5e7eb;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
+	.info-item {
+		padding: 14px 16px;
+		background-color: #ffffff;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5e7eb;
+		border-radius: 12px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
 
-.info-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+	.info-main {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
 
-.info-label {
-  font-size: 12px;
-  color: #6b7280;
-  font-weight: 600;
-}
+	.info-label {
+		font-size: 12px;
+		color: #6b7280;
+		font-weight: 600;
+	}
 
-.info-value {
-  margin-top: 6px;
-  font-size: 15px;
-  line-height: 24px;
-  color: #111827;
-  word-break: break-all;
-}
+	.info-value {
+		margin-top: 6px;
+		font-size: 15px;
+		line-height: 24px;
+		color: #111827;
+		word-break: break-all;
+	}
 
-.copy-btn {
-  height: 34px;
-  padding-left: 14px;
-  padding-right: 14px;
-  border-radius: 10px;
-  background-color: #EEF1FF;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #bfdbfe;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
+	.copy-btn {
+		height: 34px;
+		padding-left: 14px;
+		padding-right: 14px;
+		border-radius: 10px;
+		background-color: #EEF1FF;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #bfdbfe;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
 
-.copy-btn-text {
-  font-size: 13px;
-  color: #6F7FD9;
-  font-weight: 600;
-}
+	.copy-btn-text {
+		font-size: 13px;
+		color: #6F7FD9;
+		font-weight: 600;
+	}
 
-@media screen and (max-width: 768px) {
-  .page {
-    flex-direction: column;
-  }
+	@media screen and (max-width: 768px) {
+		.page {
+			height: 100vh;
+			min-height: 0;
+			flex-direction: column;
+			overflow: hidden;
+		}
 
-  .content {
-    width: 100%;
-    height: auto;
-    padding: 16px;
-  }
+		.content {
+			width: 100%;
+			flex: 1;
+			height: 0;
+			min-height: 0;
+			padding: 16px;
+			box-sizing: border-box;
+		}
 
-  .panel {
-    padding: 18px;
-    border-radius: 14px;
-  }
+		.panel {
+			padding: 18px;
+			border-radius: 14px;
+		}
 
-  .title {
-    font-size: 24px;
-  }
+		.title {
+			font-size: 24px;
+		}
 
-  .desc {
-    font-size: 14px;
-    line-height: 24px;
-  }
+		.desc {
+			font-size: 14px;
+			line-height: 24px;
+		}
 
-  .block {
-    margin-top: 16px;
-    padding: 16px;
-  }
+		.block {
+			margin-top: 16px;
+			padding: 16px;
+		}
 
-  .info-item {
-    padding: 12px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
+		.info-item {
+			padding: 12px;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 10px;
+		}
 
-  .copy-btn {
-    width: 100%;
-  }
-}
+		.copy-btn {
+			width: 100%;
+		}
+	}
 </style>

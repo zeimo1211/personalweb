@@ -107,22 +107,56 @@ export default {
 
 @media screen and (max-width: 768px) {
   .profile-card {
-    padding: 16px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .profile-top {
+    flex: 1;
+    min-width: 0;
   }
 
   .avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 28px;
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+  }
+
+  .profile-info {
+    margin-left: 10px;
+    min-width: 0;
+  }
+
+  .profile-label {
+    font-size: 11px;
+    line-height: 16px;
   }
 
   .profile-name {
-    font-size: 20px;
+    margin-top: 0;
+    font-size: 17px;
+    line-height: 24px;
   }
 
   .profile-intro {
-    font-size: 13px;
-    line-height: 21px;
+    display: none;
+  }
+
+  .bilibili-link {
+    margin-top: 0;
+    margin-left: 10px;
+    height: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 17px;
+    flex-shrink: 0;
+  }
+
+  .bilibili-link-text {
+    font-size: 12px;
   }
 }
 </style>
