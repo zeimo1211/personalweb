@@ -22,12 +22,15 @@ Because this project is built locally by HBuilderX, commit the web build output 
 ```text
 Framework preset: None
 Build command: leave empty, or use exit 0
-Deploy command: leave empty
+Deploy command: npx wrangler deploy
+Path: /
 Build output directory: unpackage/dist/build/web
 Root directory: /
 ```
 
 After this, every push to the selected GitHub branch will trigger a new deployment.
+
+This repository includes `wrangler.jsonc`, so Wrangler knows that static assets live in `unpackage/dist/build/web`.
 
 ### Update flow
 
