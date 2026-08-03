@@ -32,10 +32,10 @@ export default {
   padding-right: 12px;
   height: 32px;
   border-radius: 16px;
-  background-color: #f3f4f6;
+  background-color: #f7eadf;
   border-width: 1px;
   border-style: solid;
-  border-color: #e5e7eb;
+  border-color: #e5c9bc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,6 +43,6 @@ export default {
 
 .tag-text {
   font-size: 13px;
-  color: #4b5563;
+  color: #5d6d69;
 }
 </style>

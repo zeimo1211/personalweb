@@ -41,12 +41,13 @@ export default {
 
 <style>
 .profile-card {
-  background-color: #ffffff;
+  background-color: #fffaf0;
   border-width: 1px;
   border-style: solid;
-  border-color: #e5e7eb;
-  border-radius: 12px;
+  border-color: #c7d8d0;
+  border-radius: 8px;
   padding: 20px;
+  box-shadow: 5px 5px 0 rgba(118, 153, 142, 0.14);
 }
 
 .profile-top {
@@ -61,7 +62,8 @@ export default {
   border-radius: 34px;
   border-width: 2px;
   border-style: solid;
-  border-color: #e5e7eb;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px #c9ddd5, 3px 4px 0 rgba(93, 125, 116, 0.16);
 }
 
 .profile-info {
@@ -72,28 +74,32 @@ export default {
 
 .profile-label {
   font-size: 13px;
-  color: #6b7280;
+  color: #788985;
 }
 
 .profile-name {
   margin-top: 4px;
   font-size: 24px;
   font-weight: 600;
-  color: #111827;
+  color: #243a36;
 }
 
 .profile-intro {
   margin-top: 16px;
   font-size: 14px;
   line-height: 22px;
-  color: #4b5563;
+  color: #5d6d69;
 }
 
 .bilibili-link {
   margin-top: 16px;
   height: 42px;
-  border-radius: 8px;
-  background-color: #6F7FD9;
+  border-radius: 6px;
+  background-color: #2f8077;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #236b63;
+  box-shadow: 3px 3px 0 rgba(32, 92, 84, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,14 +107,14 @@ export default {
 
 .bilibili-link-text {
   font-size: 14px;
-  color: #ffffff;
+  color: #fffdf7;
   font-weight: 500;
 }
 
 @media screen and (max-width: 768px) {
   .profile-card {
     padding: 10px 12px;
-    border-radius: 12px;
+    border-radius: 8px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -151,7 +157,7 @@ export default {
     height: 34px;
     padding-left: 10px;
     padding-right: 10px;
-    border-radius: 17px;
+    border-radius: 6px;
     flex-shrink: 0;
   }
 

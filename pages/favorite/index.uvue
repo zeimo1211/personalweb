@@ -112,7 +112,7 @@
 		min-height: 100vh;
 		display: flex;
 		flex-direction: row;
-		background-color: #f7f9fc;
+		background-color: #edf4f1;
 	}
 
 	.content {
@@ -123,12 +123,14 @@
 
 	.hero-card {
 		padding: 28px;
-		background: linear-gradient(135deg, #ffffff 0%, #f4f8ff 100%);
+		background-color: #fffdf7;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
-		border-radius: 22px;
-		box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
+		border-color: #c4d5ce;
+		border-top-width: 4px;
+		border-top-color: #dca2a3;
+		border-radius: 8px;
+		box-shadow: 7px 8px 0 rgba(103, 138, 128, 0.11), 0 16px 32px rgba(48, 79, 72, 0.05);
 	}
 
 	.hero-main {
@@ -146,7 +148,7 @@
 
 	.hero-kicker {
 		font-size: 12px;
-		color: #6F7FD9;
+		color: #2f8077;
 		font-weight: 700;
 		letter-spacing: 1px;
 	}
@@ -155,14 +157,14 @@
 		margin-top: 10px;
 		font-size: 42px;
 		line-height: 52px;
-		color: #111827;
+		color: #243a36;
 		font-weight: 800;
 	}
 
 	.hero-en-title {
 		margin-top: 6px;
 		font-size: 18px;
-		color: #6b7280;
+		color: #788985;
 		font-weight: 500;
 	}
 
@@ -170,7 +172,7 @@
 		margin-top: 18px;
 		font-size: 18px;
 		line-height: 30px;
-		color: #1f3b73;
+		color: #356d68;
 		font-weight: 600;
 	}
 
@@ -178,18 +180,18 @@
 		margin-top: 16px;
 		font-size: 15px;
 		line-height: 28px;
-		color: #4b5563;
+		color: #5d6d69;
 	}
 
 	.hero-image-wrap {
 		width: 360px;
 		height: 360px;
 		flex-shrink: 0;
-		border-radius: 22px;
-		background: linear-gradient(180deg, #EEF1FF 0%, #EEF1FF 100%);
+		border-radius: 7px;
+		background-color: #dcece6;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #D8DEFF;
+		border-color: #bfd8d1;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -204,12 +206,12 @@
 	.section-block {
 		margin-top: 22px;
 		padding: 24px;
-		background-color: #ffffff;
+		background-color: #fffdf7;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
-		border-radius: 22px;
-		box-shadow: 0 8px 24px rgba(17, 24, 39, 0.04);
+		border-color: #cfdbd5;
+		border-radius: 8px;
+		box-shadow: 6px 7px 0 rgba(103, 138, 128, 0.11), 0 14px 28px rgba(48, 79, 72, 0.05);
 	}
 
 	.section-head {
@@ -219,7 +221,7 @@
 
 	.section-kicker {
 		font-size: 12px;
-		color: #6F7FD9;
+		color: #2f8077;
 		font-weight: 700;
 	}
 
@@ -227,7 +229,7 @@
 		margin-top: 8px;
 		font-size: 28px;
 		line-height: 38px;
-		color: #111827;
+		color: #243a36;
 		font-weight: 800;
 	}
 
@@ -255,8 +257,8 @@
 	.timeline-index {
 		width: 36px;
 		height: 36px;
-		border-radius: 18px;
-		background-color: #6F7FD9;
+		border-radius: 8px;
+		background-color: #2f8077;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -264,7 +266,7 @@
 
 	.timeline-index-text {
 		font-size: 14px;
-		color: #ffffff;
+		color: #fffdf7;
 		font-weight: 700;
 	}
 
@@ -272,17 +274,17 @@
 		width: 2px;
 		flex: 1;
 		margin-top: 8px;
-		background-color: #D8DEFF;
+		background-color: #bfd8d1;
 	}
 
 	.timeline-content {
 		flex: 1;
 		padding: 16px;
-		border-radius: 18px;
-		background-color: #EEF1FF;
+		border-radius: 8px;
+		background-color: #e5f1ed;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5eefc;
+		border-color: #bad3cb;
 		display: flex;
 		flex-direction: row;
 		gap: 18px;
@@ -291,11 +293,11 @@
 	.timeline-media-wrap {
 		width: 260px;
 		height: 146px;
-		border-radius: 14px;
-		background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+		border-radius: 6px;
+		background-color: #dcece6;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
+		border-color: #cfdbd5;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
@@ -317,7 +319,7 @@
 	.timeline-title {
 		font-size: 24px;
 		line-height: 32px;
-		color: #111827;
+		color: #243a36;
 		font-weight: 800;
 	}
 
@@ -325,7 +327,7 @@
 		margin-top: 8px;
 		font-size: 14px;
 		line-height: 22px;
-		color: #6F7FD9;
+		color: #2f8077;
 		font-weight: 600;
 	}
 
@@ -333,22 +335,22 @@
 		margin-top: 12px;
 		font-size: 15px;
 		line-height: 26px;
-		color: #4b5563;
+		color: #5d6d69;
 	}
 
 	.timeline-note-wrap {
 		margin-top: 14px;
 		padding: 12px 14px;
-		border-radius: 12px;
-		background-color: #ffffff;
+		border-radius: 6px;
+		background-color: #fffdf7;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #D8DEFF;
+		border-color: #bfd8d1;
 	}
 
 	.timeline-note-label {
 		font-size: 12px;
-		color: #6b7280;
+		color: #788985;
 		font-weight: 700;
 	}
 
@@ -356,7 +358,7 @@
 		margin-top: 6px;
 		font-size: 14px;
 		line-height: 24px;
-		color: #1f3b73;
+		color: #356d68;
 	}
 
 	.reason-grid {
@@ -370,17 +372,17 @@
 	.reason-card {
 		width: calc(33.3333% - 11px);
 		padding: 18px;
-		border-radius: 18px;
-		background: linear-gradient(180deg, #ffffff 0%, #EEF1FF 100%);
+		border-radius: 8px;
+		background-color: #f8eee5;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
+		border-color: #e3c9bd;
 	}
 
 	.reason-title {
 		font-size: 20px;
 		line-height: 28px;
-		color: #111827;
+		color: #243a36;
 		font-weight: 700;
 	}
 
@@ -388,7 +390,7 @@
 		margin-top: 10px;
 		font-size: 14px;
 		line-height: 24px;
-		color: #4b5563;
+		color: #5d6d69;
 	}
 
 	.gallery-grid {
@@ -402,21 +404,21 @@
 	.gallery-card {
 		width: calc(25% - 12px);
 		padding: 10px;
-		border-radius: 16px;
-		background-color: #ffffff;
+		border-radius: 8px;
+		background-color: #fffdf7;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
+		border-color: #cfdbd5;
 	}
 
 	.gallery-image-wrap {
 		width: 100%;
 		aspect-ratio: 16 / 9;
-		border-radius: 14px;
-		background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+		border-radius: 5px;
+		background-color: #dcece6;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
+		border-color: #cfdbd5;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
@@ -432,7 +434,7 @@
 		margin-top: 10px;
 		font-size: 13px;
 		line-height: 20px;
-		color: #4b5563;
+		color: #5d6d69;
 		text-align: center;
 	}
 
@@ -440,17 +442,17 @@
 		margin-top: 22px;
 		margin-bottom: 24px;
 		padding: 24px;
-		border-radius: 22px;
-		background: linear-gradient(135deg, #EEF1FF 0%, #EEF1FF 100%);
+		border-radius: 8px;
+		background-color: #e5f1ed;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #D8DEFF;
+		border-color: #bfd8d1;
 	}
 
 	.ending-text {
 		font-size: 18px;
 		line-height: 32px;
-		color: #1f3b73;
+		color: #356d68;
 		font-weight: 600;
 		text-align: center;
 	}

@@ -2,6 +2,14 @@
 	<view class="sidebar">
 		<profile-card :profile="profile" />
 
+		<view class="home-entry" @click="goHome">
+			<view class="home-entry-icon">
+				<view class="home-entry-icon-core"></view>
+			</view>
+			<text class="home-entry-text">返回 3D 交互主页</text>
+			<text class="home-entry-arrow">›</text>
+		</view>
+
 		<section-nav :sections="sections" :activeSectionId="activeSectionId" />
 
 		<view class="tip-card">
@@ -33,6 +41,13 @@
 				type: String,
 				default: ''
 			}
+		},
+		methods: {
+			goHome() {
+				uni.reLaunch({
+					url: '/pages/home/index'
+				})
+			}
 		}
 	}
 </script>
@@ -44,27 +59,95 @@
 		padding: 20px 18px;
 		border-right-width: 1px;
 		border-right-style: solid;
-		border-right-color: #e5e7eb;
-		background-color: #ffffff;
+		border-right-color: #b9cec7;
+		background-color: #f8f4e9;
+		box-shadow: 8px 0 28px rgba(52, 91, 84, 0.08);
 		box-sizing: border-box;
 		flex-shrink: 0;
 		position: relative;
 		z-index: 2;
 	}
 
+	.home-entry {
+		margin-top: 14px;
+		height: 44px;
+		padding-left: 14px;
+		padding-right: 12px;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #a9c9c0;
+		border-radius: 6px;
+		background-color: #edf5f0;
+		box-shadow: 4px 4px 0 rgba(91, 128, 118, 0.12);
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		cursor: pointer;
+		transition: transform 0.16s ease, background-color 0.16s ease, box-shadow 0.16s ease;
+	}
+
+	.home-entry:hover {
+		background-color: #e3f0eb;
+		transform: translateY(-2px);
+		box-shadow: 5px 6px 0 rgba(91, 128, 118, 0.14);
+	}
+
+	.home-entry:active {
+		transform: translateY(1px);
+		box-shadow: 2px 2px 0 rgba(91, 128, 118, 0.12);
+	}
+
+	.home-entry-icon {
+		width: 18px;
+		height: 18px;
+		border-width: 2px;
+		border-style: solid;
+		border-color: #c97980;
+		background-color: #f3c1b5;
+		transform: rotate(45deg);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.home-entry-icon-core {
+		width: 7px;
+		height: 7px;
+		background-color: #fffaf0;
+	}
+
+	.home-entry-text {
+		flex: 1;
+		margin-left: 13px;
+		font-size: 13px;
+		line-height: 20px;
+		color: #2f6f67;
+		font-weight: 700;
+	}
+
+	.home-entry-arrow {
+		margin-left: 8px;
+		font-size: 22px;
+		line-height: 24px;
+		color: #6f948b;
+		font-weight: 500;
+	}
+
 	.tip-card {
 		margin-top: 20px;
 		padding: 16px;
-		background: linear-gradient(180deg, #fcfcfd 0%, #f8fafc 100%);
+		background-color: #edf5ef;
 		border-width: 1px;
 		border-style: dashed;
-		border-color: #d1d5db;
-		border-radius: 14px;
+		border-color: #a8c4bb;
+		border-radius: 6px;
+		box-shadow: 4px 4px 0 rgba(108, 143, 133, 0.12);
 	}
 
 	.tip-title {
 		font-size: 13px;
-		color: #111827;
+		color: #243a36;
 		font-weight: 700;
 	}
 
@@ -72,7 +155,7 @@
 		margin-top: 8px;
 		font-size: 13px;
 		line-height: 22px;
-		color: #6b7280;
+		color: #788985;
 	}
 
 	@media screen and (max-width: 768px) {
@@ -83,13 +166,29 @@
 			border-right-width: 0;
 			border-bottom-width: 1px;
 			border-bottom-style: solid;
-			border-bottom-color: #e5e7eb;
+			border-bottom-color: #cfdbd5;
 			box-sizing: border-box;
 			flex-shrink: 0;
 		}
 
 		.tip-card {
 			display: none;
+		}
+
+		.home-entry {
+			margin-top: 8px;
+			height: 38px;
+			box-shadow: 3px 3px 0 rgba(91, 128, 118, 0.1);
+		}
+
+		.home-entry-icon {
+			width: 15px;
+			height: 15px;
+		}
+
+		.home-entry-icon-core {
+			width: 5px;
+			height: 5px;
 		}
 	}
 </style>

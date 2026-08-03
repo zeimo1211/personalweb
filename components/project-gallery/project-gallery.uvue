@@ -41,12 +41,12 @@
 	.gallery-title {
 		font-size: 20px;
 		font-weight: 700;
-		color: #111827;
+		color: #243a36;
 	}
 
 	.gallery-note {
 		font-size: 13px;
-		color: #6b7280;
+		color: #788985;
 	}
 
 	.gallery-grid {
@@ -58,22 +58,23 @@
 
 	.gallery-card {
 		width: calc(50% - 6px);
-		background-color: #ffffff;
+		background-color: #fffdf7;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
-		border-radius: 12px;
+		border-color: #c4d5ce;
+		border-radius: 8px;
 		padding: 8px;
+		box-shadow: 4px 5px 0 rgba(103, 138, 128, 0.11);
 	}
 
 	.gallery-image-wrap {
 		width: 100%;
 		aspect-ratio: 16 / 9;
-		background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+		background-color: #dcece6;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
-		border-radius: 10px;
+		border-color: #cfdbd5;
+		border-radius: 5px;
 		overflow: hidden;
 		display: flex;
 		align-items: center;
@@ -88,7 +89,7 @@
 	.gallery-index {
 		margin-top: 6px;
 		font-size: 12px;
-		color: #6b7280;
+		color: #788985;
 		text-align: center;
 	}
 

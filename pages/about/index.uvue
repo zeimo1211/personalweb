@@ -128,7 +128,7 @@
 		min-height: 100vh;
 		display: flex;
 		flex-direction: row;
-		background-color: #f9fafb;
+		background-color: #edf4f1;
 	}
 
 	.content {
@@ -138,48 +138,51 @@
 	}
 
 	.panel {
-		background-color: #ffffff;
+		background-color: #fffdf7;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
-		border-radius: 16px;
+		border-color: #c4d5ce;
+		border-top-width: 4px;
+		border-top-color: #dca2a3;
+		border-radius: 8px;
 		padding: 28px;
+		box-shadow: 7px 8px 0 rgba(103, 138, 128, 0.11), 0 16px 32px rgba(48, 79, 72, 0.05);
 	}
 
 	.title {
 		font-size: 28px;
 		font-weight: 700;
-		color: #111827;
+		color: #243a36;
 	}
 
 	.desc {
 		margin-top: 12px;
 		font-size: 15px;
 		line-height: 26px;
-		color: #4b5563;
+		color: #5d6d69;
 	}
 
 	.block {
 		margin-top: 24px;
 		padding: 20px;
-		background-color: #f9fafb;
+		background-color: #f3f6f0;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
-		border-radius: 12px;
+		border-color: #c4d5ce;
+		border-radius: 6px;
 	}
 
 	.block-title {
 		font-size: 18px;
 		font-weight: 600;
-		color: #111827;
+		color: #243a36;
 	}
 
 	.block-text {
 		margin-top: 10px;
 		font-size: 15px;
 		line-height: 24px;
-		color: #4b5563;
+		color: #5d6d69;
 	}
 
 	.info-list {
@@ -191,11 +194,12 @@
 
 	.info-item {
 		padding: 14px 16px;
-		background-color: #ffffff;
+		background-color: #fffdf7;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #e5e7eb;
-		border-radius: 12px;
+		border-color: #d5d7c8;
+		box-shadow: 3px 3px 0 rgba(121, 143, 132, 0.08);
+		border-radius: 6px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -211,7 +215,7 @@
 
 	.info-label {
 		font-size: 12px;
-		color: #6b7280;
+		color: #788985;
 		font-weight: 600;
 	}
 
@@ -219,7 +223,7 @@
 		margin-top: 6px;
 		font-size: 15px;
 		line-height: 24px;
-		color: #111827;
+		color: #243a36;
 		word-break: break-all;
 	}
 
@@ -227,11 +231,11 @@
 		height: 34px;
 		padding-left: 14px;
 		padding-right: 14px;
-		border-radius: 10px;
-		background-color: #EEF1FF;
+		border-radius: 5px;
+		background-color: #e5f1ed;
 		border-width: 1px;
 		border-style: solid;
-		border-color: #bfdbfe;
+		border-color: #b8d5cd;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -240,7 +244,7 @@
 
 	.copy-btn-text {
 		font-size: 13px;
-		color: #6F7FD9;
+		color: #2f8077;
 		font-weight: 600;
 	}
 
