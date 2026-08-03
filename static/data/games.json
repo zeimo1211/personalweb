@@ -26,7 +26,7 @@
 		"review": "节奏快，漂移、喷射、路线选择带来的操作反馈很直接；竞速赛、道具赛、排位等模式比较成熟，适合碎片时间玩，也很适合和朋友一起开黑。官方和渠道页都强调了它延续端游手感和经典模式，这也是它最吸引人的地方。但是长期玩会比较明显地感受到外观、 赛车、 宠物、 活动体系偏重养成和收集， 新鲜感部分要靠版本活动维持； 如果你只想纯拼技术， 后期可能会有点被“ 运营活动节奏” 打断。 说白了就是不氪不行。 还有最重要的一点是上手难度太大了， 最后变成了一个搓招游戏， 几乎很难有新玩家入坑。 不过在国内竞速手游这一块还是老大哥， 所以营收数据也都不错。 "
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "传送门 2",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -116,70 +116,61 @@
 		"review": "关卡地图设计、探索节奏和氛围塑造都非常出色，是让我反复回味的一部作品。但是部分区域过度的重复跳跳乐以及首发时中文翻译问题令玩家反感。"
 	},
 	{
-		"id": "portal-2",
+		"id": "sheephome",
 		"title": "送小羊回家",
-		"cover": "/static/image/game/game-portal2.webp",
-		"duration": "11 小时",
-		"progress": "全模式通关",
-		"score": "10 / 10",
-		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
+		"cover": "/static/image/game/game-sheephome.webp",
+		"duration": "2.8 小时",
+		"progress": "通关3个章节",
+		"score": "8 / 10",
+		"review": "挺有意思的合家欢本地多人小游戏，被朋友拉着玩的，画风挺可爱的，玩法也蛮有意思。"
 	},
 	{
-		"id": "portal-2",
+		"id": "2077",
 		"title": "赛博朋克2077",
-		"cover": "/static/image/game/game-portal2.webp",
-		"duration": "11 小时",
-		"progress": "全模式通关",
-		"score": "10 / 10",
-		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
+		"cover": "/static/image/game/game-2077.webp",
+		"duration": "46.7 小时",
+		"progress": "一周目通关",
+		"score": "9.5 / 10",
+		"review": "夜之城没有活着的传奇！沉浸式的地图+剧情设计，角色塑造出彩和战斗玩法也比较自由，创造了一个充满活力和细节的赛博朋克世界。虽然发售时bug较多，但经过多次更新修复后尤其是往日之影，已经成为一款非常出色的开放世界RPG游戏。并且2077也经常第一个使用图形新技术，人称老黄的赛博实验田。"
 	},
 	{
-		"id": "portal-2",
-		"title": "情感反诈模拟器",
-		"cover": "/static/image/game/game-portal2.webp",
-		"duration": "11 小时",
-		"progress": "全模式通关",
-		"score": "10 / 10",
-		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
-	},
-	{
-		"id": "portal-2",
+		"id": "animalwell",
 		"title": "动物井",
-		"cover": "/static/image/game/game-portal2.webp",
-		"duration": "11 小时",
-		"progress": "全模式通关",
-		"score": "10 / 10",
-		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
+		"cover": "/static/image/game/game-animalwell.webp",
+		"duration": "87 分钟",
+		"progress": "仅通过第一章节",
+		"score": "8.4 / 10",
+		"review": "游戏体积十分轻量，画面风格也比较独特，类银河恶魔城地图也足够丰富。但是我个人并不是很吃这种画风，感觉有点阴暗冷淡了，可能不适合像素风。而且目标感也有点偏弱。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portalbridge",
 		"title": "桥梁工程师传送门",
-		"cover": "/static/image/game/game-portal2.webp",
-		"duration": "11 小时",
+		"cover": "/static/image/game/game-portalbridge.webp",
+		"duration": "12.4 小时",
 		"progress": "全模式通关",
-		"score": "10 / 10",
-		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
+		"score": "9.2 / 10",
+		"review": "谁能忍住不当何坤？加上传送门就更忍不住了！这次联动将两个专注物理和空间解谜的玩法巧妙地结合到了一起，传送门为桥梁设计提供了新的空间可能性。关卡数量也足够丰富还有创意工坊编辑器。虽然后期重复的调试会有点乏味，并且没有战斗缺少一定的刺激感，但是对于喜欢物理解谜和空间设计的玩家来说，这款游戏绝对是一个不容错过的佳作和联动的典范。"
 	},
 	{
-		"id": "portal-2",
+		"id": "splitfiction",
 		"title": "双影奇境",
-		"cover": "/static/image/game/game-portal2.webp",
-		"duration": "11 小时",
-		"progress": "全模式通关",
-		"score": "10 / 10",
-		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
+		"cover": "/static/image/game/game-splitfiction.webp",
+		"duration": "15.7 小时",
+		"progress": "米欧视角通关",
+		"score": "9.2 / 10",
+		"review": "双人游戏的又一次进化，这一次在画面表现场景氛围等视听效果上进步非常大。主线章节和支线章节每一关都有自己的特色，多到像是用不完的创意让你每次都有新奇的体验。科幻结合奇幻的双线风格也完美击中我的好球区。最后章节对双人镜头的运用也达到了新的高度。但双人成行的光芒太耀眼了，这一代在“双人性”上却没有很明显的进步。"
 	},
 	{
-		"id": "portal-2",
+		"id": "forestsons",
 		"title": "森林之子",
-		"cover": "/static/image/game/game-portal2.webp",
-		"duration": "11 小时",
-		"progress": "全模式通关",
-		"score": "10 / 10",
-		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
+		"cover": "/static/image/game/game-forestsons.webp",
+		"duration": "35.8 小时",
+		"progress": "一周目通关",
+		"score": "8.5 / 10",
+		"review": "相比上代更大的地图，动态四季效果都让恐怖氛围更加沉浸。极致的自由建造和科技路线的打印机，凯文和变异女分别在建造和战斗上提供帮助。在生存经营和战斗上都十分具有可玩性。但是地图整体还是重复枯燥。尤其是后期的流程设计，居然有必须原路返回再重新回来的流程，就靠一个道具卡重探？"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "逃出生天",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -188,7 +179,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "黑神话悟空",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -197,7 +188,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "双人成行",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -206,7 +197,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "底特律：化身为人",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -215,7 +206,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "城市：天际线",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -224,7 +215,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "丝之歌",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -233,7 +224,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "人类一败涂地",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -242,7 +233,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "荒野大镖客2",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -251,7 +242,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "塞尔达传送：王国之泪",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -260,7 +251,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "塞尔达传说：旷野之息",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -269,7 +260,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "精灵宝可梦：盾",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -278,7 +269,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "死亡搁浅",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -296,7 +287,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "王者荣耀世界",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -305,7 +296,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "鸣潮",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -314,7 +305,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "三国杀",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -323,7 +314,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "异环",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -332,7 +323,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "明日方舟：终末地",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -341,7 +332,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "崩坏：星穹铁道",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -350,7 +341,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "阴阳师",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -359,7 +350,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "无限暖暖",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -368,7 +359,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "哈利波特：魔法觉醒",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -377,7 +368,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "忍者必须死3",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -386,7 +377,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "无期迷途",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -395,7 +386,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "战双帕弥什",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -404,7 +395,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "深空之眼",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -413,7 +404,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "幻塔",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -422,7 +413,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "纪念碑谷",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -431,7 +422,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "终焉誓约",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -440,7 +431,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "龙族幻想",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -449,7 +440,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "全民飞机大战",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -458,7 +449,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "王牌竞速",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
@@ -467,7 +458,7 @@
 		"review": "新颖的解密方式！谜题设计极其扎实，关卡引导和叙事节奏也很成熟，对空间解谜的启发很大。"
 	},
 	{
-		"id": "portal-2",
+		"id": "portal2",
 		"title": "天天飞车",
 		"cover": "/static/image/game/game-portal2.webp",
 		"duration": "11 小时",
