@@ -22,6 +22,7 @@ Because this project is built locally by HBuilderX, commit the web build output 
 ```text
 Framework preset: None
 Build command: leave empty, or use exit 0
+Deploy command: leave empty
 Build output directory: unpackage/dist/build/web
 Root directory: /
 ```
@@ -63,7 +64,7 @@ cloudflare-pages-deploy.bat
 For dashboard drag-and-drop deployment:
 
 - Upload target: `unpackage/dist/build/web`
-- The folder must contain `index.html`, `assets/`, `static/`, `_headers`, and `_redirects`.
+- The folder must contain `index.html`, `assets/`, `static/`, and `_headers`.
 
 For Wrangler deployment:
 

@@ -12,7 +12,6 @@ if not exist "%OUT%\index.html" (
 )
 
 copy /Y "%CF%\_headers" "%OUT%\_headers" >nul
-copy /Y "%CF%\_redirects" "%OUT%\_redirects" >nul
 
 echo Cloudflare Pages files prepared in:
 echo %OUT%
