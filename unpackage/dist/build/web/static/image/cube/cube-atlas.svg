@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="768" viewBox="0 0 1024 768">
+  <rect width="1024" height="768" fill="#b8d9d4"/>
+
+  <g transform="translate(256 0)">
+    <rect width="256" height="256" fill="#f6d786"/>
+    <path d="M0 0H256L0 256Z" fill="#fff0b7"/>
+    <rect x="18" y="18" width="220" height="220" fill="none" stroke="#fffaf0" stroke-width="14"/>
+    <path d="M128 52L202 128L128 204L54 128Z" fill="#e9ad39" opacity=".86"/>
+    <rect x="108" y="108" width="40" height="40" fill="#fff4ce"/>
+  </g>
+
+  <g transform="translate(0 256)">
+    <rect width="256" height="256" fill="#a9d7ed"/>
+    <path d="M0 0H256L256 256Z" fill="#79acd0"/>
+    <rect x="18" y="18" width="220" height="220" fill="none" stroke="#fffaf0" stroke-width="14"/>
+    <path d="M54 128L128 54L202 128L128 202Z" fill="#4b8fbd" opacity=".82"/>
+    <circle cx="128" cy="128" r="27" fill="#dff5ff"/>
+  </g>
+
+  <g transform="translate(256 256)">
+    <rect width="256" height="256" fill="#9ce3d4"/>
+    <path d="M0 256V0H256Z" fill="#55b9aa"/>
+    <rect x="18" y="18" width="220" height="220" fill="none" stroke="#fffaf0" stroke-width="14"/>
+    <path d="M128 48L208 128L128 208L48 128Z" fill="#278f82" opacity=".84"/>
+    <rect x="102" y="102" width="52" height="52" fill="#d9fff8"/>
+  </g>
+
+  <g transform="translate(512 256)">
+    <rect width="256" height="256" fill="#f6b7ca"/>
+    <path d="M0 0H256L0 256Z" fill="#ffd8e3"/>
+    <rect x="18" y="18" width="220" height="220" fill="none" stroke="#fffaf0" stroke-width="14"/>
+    <path d="M58 72H198V184H58Z" fill="#d86f93" opacity=".84"/>
+    <path d="M92 128L128 92L164 128L128 164Z" fill="#ffe2ed"/>
+  </g>
+
+  <g transform="translate(768 256)">
+    <rect width="256" height="256" fill="#d9c2ef"/>
+    <path d="M0 256L256 0V256Z" fill="#ae82d2"/>
+    <rect x="18" y="18" width="220" height="220" fill="none" stroke="#fffaf0" stroke-width="14"/>
+    <circle cx="128" cy="128" r="72" fill="#8c5fba" opacity=".82"/>
+    <path d="M128 82L174 128L128 174L82 128Z" fill="#f4e6ff"/>
+  </g>
+
+  <g transform="translate(256 512)">
+    <rect width="256" height="256" fill="#c7cdf7"/>
+    <path d="M0 0H256V256Z" fill="#8c96e5"/>
+    <rect x="18" y="18" width="220" height="220" fill="none" stroke="#fffaf0" stroke-width="14"/>
+    <path d="M62 62H194V194H62Z" fill="#6876d2" opacity=".82"/>
+    <circle cx="128" cy="128" r="31" fill="#edf0ff"/>
+  </g>
+</svg>
