@@ -137,7 +137,7 @@
         .cube-hud button { height: 32px; padding: 0 9px; font-size: 11px; line-height: 30px; }
         .world-label-name { min-width: 62px; padding: 4px 6px; font-size: 10px; line-height: 14px; }
         .cube-audio-toggle { right: 12px; bottom: 12px; width: 38px; height: 38px; }
-        .cube-joystick { left: 150px; bottom: 200px; }
+        .cube-joystick { left: 80px; bottom: 140px; }
         .cube-joystick { display: block; }
       }
     `
