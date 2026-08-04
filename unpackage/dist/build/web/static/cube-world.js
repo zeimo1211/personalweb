@@ -1249,6 +1249,16 @@
       global.clearTimeout(self.repeatTimer)
       if (self.joystickKnob) self.joystickKnob.style.transform = 'translate(0, 0)'
     }
+    var nudgeJoystickKnob = function (dx, dz) {
+      if (!self.joystickKnob) return
+      self.joystickKnob.style.transform = 'translate(' + (dx * 36) + 'px, ' + (dz * 36) + 'px)'
+      global.clearTimeout(self.joystickKnobTimer)
+      self.joystickKnobTimer = global.setTimeout(function () {
+        if (!joystickPointerId && self.joystickKnob) {
+          self.joystickKnob.style.transform = 'translate(0, 0)'
+        }
+      }, 180)
+    }
 
     if (this.joystick) {
       this.joystick.addEventListener('pointerdown', function (event) {
@@ -1296,7 +1306,12 @@
         return
       }
       var moveButton = event.target.closest('[data-dx]')
-      if (moveButton) self.requestMove(Number(moveButton.dataset.dx), Number(moveButton.dataset.dz))
+      if (moveButton) {
+        var dx = Number(moveButton.dataset.dx)
+        var dz = Number(moveButton.dataset.dz)
+        nudgeJoystickKnob(dx, dz)
+        self.requestMove(dx, dz)
+      }
     })
     this.enterButton.addEventListener('click', function () { self.enter() })
   }
@@ -1384,6 +1399,7 @@
     global.clearTimeout(this.toastTimer)
     global.clearTimeout(this.repeatTimer)
     global.clearTimeout(this.routeTimer)
+    global.clearTimeout(this.joystickKnobTimer)
     global.removeEventListener('keydown', this.onKeyDown)
     global.removeEventListener('keyup', this.onKeyUp)
     global.removeEventListener('resize', this.onResize)
