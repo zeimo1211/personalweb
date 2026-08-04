@@ -1,6 +1,6 @@
 <template>
 	<view class="page" v-if="project != null">
-		<site-sidebar :profile="site.profile" :sections="site.sections" :activeSectionId="sectionId" />
+		<site-menu :profile="site.profile" :sections="site.sections" :activeSectionId="sectionId" />
 
 		<scroll-view class="content" scroll-y="true" show-scrollbar="false">
 			<view class="detail-shell">
@@ -54,7 +54,7 @@
 	</view>
 
 	<view class="page" v-else>
-		<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="" />
+		<site-menu :profile="site.profile" :sections="site.sections" activeSectionId="" />
 
 		<view class="content empty-wrap">
 			<text class="empty-title">未找到该项目</text>
@@ -68,14 +68,14 @@
 <script lang="uts">
 	import { siteData } from '@/data/site.uts'
 	import { getProjectById, getProjectSection } from '@/utils/site.uts'
-	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+	import SiteMenu from '@/components/site-menu/site-menu.uvue'
 	import ProjectMeta from '@/components/project-meta/project-meta.uvue'
 	import ProjectGallery from '@/components/project-gallery/project-gallery.uvue'
 	import TagList from '@/components/tag-list/tag-list.uvue'
 
 	export default {
 		components: {
-			SiteSidebar,
+			SiteMenu,
 			ProjectMeta,
 			ProjectGallery,
 			TagList
@@ -315,7 +315,8 @@
 
 		.content {
 			width: 100%;
-			height: auto;
+			height: 100%;
+			min-height: 0;
 			padding: 16px;
 		}
 

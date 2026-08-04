@@ -1,6 +1,6 @@
 <template>
 	<view class="page" v-if="section != null">
-		<site-sidebar :profile="site.profile" :sections="site.sections" :activeSectionId="section.id" />
+		<site-menu :profile="site.profile" :sections="site.sections" :activeSectionId="section.id" />
 
 		<scroll-view class="content" scroll-y="true">
 			<view class="section-banner">
@@ -24,7 +24,7 @@
 	</view>
 
 	<view class="page" v-else>
-		<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="" />
+		<site-menu :profile="site.profile" :sections="site.sections" activeSectionId="" />
 
 		<view class="content empty-wrap">
 			<text class="empty-title">未找到该分区</text>
@@ -38,12 +38,12 @@
 <script lang="uts">
 	import { siteData } from '@/data/site.uts'
 	import { getSectionById } from '@/utils/site.uts'
-	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+	import SiteMenu from '@/components/site-menu/site-menu.uvue'
 	import ProjectCard from '@/components/project-card/project-card.uvue'
 
 	export default {
 		components: {
-			SiteSidebar,
+			SiteMenu,
 			ProjectCard
 		},
 		data() {
@@ -155,7 +155,7 @@
 	}
 
 	.card-cell {
-		width: calc(45% - 9px);
+		width: calc(33.3333% - 12px);
 	}
 
 	.empty-wrap {
@@ -192,14 +192,13 @@
 		.page {
 			height: 100vh;
 			min-height: 0;
-			flex-direction: column;
 			overflow: hidden;
 		}
 
 		.content {
 			width: 100%;
 			flex: 1;
-			height: 0;
+			height: 100%;
 			min-height: 0;
 			padding: 16px;
 			box-sizing: border-box;

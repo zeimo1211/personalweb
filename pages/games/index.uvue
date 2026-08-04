@@ -1,6 +1,6 @@
 <template>
 	<view class="page">
-		<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="games" />
+		<site-menu :profile="site.profile" :sections="site.sections" activeSectionId="games" />
 
 		<scroll-view class="content" scroll-y="true" :scroll-top="scrollTopValue" scroll-with-animation="true"
 			lower-threshold="120" @scrolltolower="handleScrollToLower" @scroll="handleScroll">
@@ -80,11 +80,11 @@
 
 <script lang="uts">
 	import { siteData } from '@/data/site.uts'
-	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+	import SiteMenu from '@/components/site-menu/site-menu.uvue'
 
 	export default {
 		components: {
-			SiteSidebar
+			SiteMenu
 		},
 		data() {
 			return {
@@ -487,14 +487,13 @@
 		.page {
 			height: 100vh;
 			min-height: 0;
-			flex-direction: column;
 			overflow: hidden;
 		}
 
 		.content {
 			width: 100%;
 			flex: 1;
-			height: 0;
+			height: 100%;
 			min-height: 0;
 			padding: 16px;
 			box-sizing: border-box;

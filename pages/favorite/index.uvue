@@ -1,8 +1,9 @@
 <template>
 	<view class="page">
-		<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="favorite" />
+		<site-menu :profile="site.profile" :sections="site.sections" activeSectionId="favorite" />
+		<favorite-password-modal v-if="showPasswordModal" @verified="unlockFromModal" @cancel="cancelPassword" />
 
-		<scroll-view class="content" scroll-y="true">
+		<scroll-view v-if="unlocked" class="content" scroll-y="true">
 			<view class="hero-card">
 				<view class="hero-main">
 					<view class="hero-text">
@@ -93,15 +94,43 @@
 
 <script lang="uts">
 	import { siteData } from '@/data/site.uts'
-	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+	import SiteMenu from '@/components/site-menu/site-menu.uvue'
+	import FavoritePasswordModal from '@/components/favorite-password-modal/favorite-password-modal.uvue'
 
 	export default {
 		components: {
-			SiteSidebar
+			SiteMenu,
+			FavoritePasswordModal
 		},
 		data() {
 			return {
-				site: siteData
+				site: siteData,
+				unlocked: false,
+				showPasswordModal: false
+			}
+		},
+		mounted() {
+			// #ifdef WEB
+			const verified = window.sessionStorage.getItem('favorite-entry-verified')
+			if (verified == 'yes') {
+				window.sessionStorage.removeItem('favorite-entry-verified')
+				this.unlocked = true
+				return
+			}
+
+			this.showPasswordModal = true
+			// #endif
+		},
+		methods: {
+			unlockFromModal() {
+				this.unlocked = true
+				this.showPasswordModal = false
+			},
+			cancelPassword() {
+				this.showPasswordModal = false
+				uni.reLaunch({
+					url: '/pages/home/index'
+				})
 			}
 		}
 	}
@@ -461,14 +490,13 @@
 		.page {
 			height: 100vh;
 			min-height: 0;
-			flex-direction: column;
 			overflow: hidden;
 		}
 
 		.content {
 			width: 100%;
 			flex: 1;
-			height: 0;
+			height: 100%;
 			min-height: 0;
 			padding: 16px;
 			box-sizing: border-box;

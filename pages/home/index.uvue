@@ -8,38 +8,27 @@
 			</view>
 		</view>
 
-		<view v-if="menuOpen" class="menu-backdrop" @click="closeMenu"></view>
-		<view class="menu-drawer" :class="menuOpen ? 'open' : ''" @click.stop>
-			<site-sidebar :profile="site.profile" :sections="site.sections" activeSectionId="" />
-			<view class="menu-close" @click="closeMenu">
-				<text class="menu-close-icon">×</text>
-			</view>
-		</view>
-
-		<view v-if="!menuOpen" class="menu-trigger" @click="openMenu">
-			<text class="menu-trigger-icon">☰</text>
-		</view>
+		<site-menu :profile="site.profile" :sections="site.sections" activeSectionId="" />
 	</view>
 </template>
 
 <script lang="uts">
 	import { siteData } from '@/data/site.uts'
-	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+	import SiteMenu from '@/components/site-menu/site-menu.uvue'
 
 	export default {
 		components: {
-			SiteSidebar
+			SiteMenu
 		},
 		data() {
 			return {
-				site: siteData,
-				menuOpen: false
+				site: siteData
 			}
 		},
 		mounted() {
 			// #ifdef WEB
 			this.loadWorldScript('/static/vendor/three.min.js', 'three-runtime', () => {
-				this.loadWorldScript('/static/cube-world.js', 'cube-world-runtime', () => {
+				this.loadWorldScript('/static/cube-world.js?v=20260804-joystick', 'cube-world-runtime-joystick', () => {
 					const runtime = (window as any).PersonalCubeWorld
 					const host = document.getElementById('cube-world')
 					if (runtime != null && host != null) {
@@ -56,12 +45,6 @@
 			// #endif
 		},
 		methods: {
-			openMenu() {
-				this.menuOpen = true
-			},
-			closeMenu() {
-				this.menuOpen = false
-			},
 			loadWorldScript(src : string, id : string, done : () => void) {
 				// #ifdef WEB
 				const existing = document.getElementById(id) as HTMLScriptElement | null
@@ -135,91 +118,4 @@
 		color: #5d6d69;
 	}
 
-	.menu-backdrop {
-		position: fixed;
-		inset: 0;
-		z-index: 20;
-		background-color: rgba(12, 25, 23, 0.32);
-		backdrop-filter: blur(3px);
-	}
-
-	.menu-drawer {
-		position: fixed;
-		left: 0;
-		top: 0;
-		bottom: 0;
-		z-index: 21;
-		width: 280px;
-		max-width: calc(100vw - 48px);
-		background-color: #ffffff;
-		box-shadow: 18px 0 48px rgba(15, 32, 29, 0.18);
-		transform: translateX(-105%);
-		transition-property: transform;
-		transition-duration: 220ms;
-		transition-timing-function: ease-out;
-		overflow-y: auto;
-	}
-
-	.menu-drawer.open {
-		transform: translateX(0);
-	}
-
-	.menu-close,
-	.menu-trigger {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-width: 1px;
-		border-style: solid;
-		border-color: rgba(21, 52, 47, 0.18);
-		background-color: rgba(255, 255, 255, 0.92);
-		box-shadow: 0 10px 28px rgba(20, 45, 41, 0.16);
-	}
-
-	.menu-trigger {
-		position: fixed;
-		left: 0;
-		top: 50%;
-		z-index: 10;
-		width: 44px;
-		height: 48px;
-		border-radius: 0 7px 7px 0;
-		transform: translateY(-50%);
-	}
-
-	.menu-close {
-		position: absolute;
-		right: -42px;
-		top: 12px;
-		z-index: 23;
-		width: 34px;
-		height: 34px;
-		border-radius: 6px;
-	}
-
-	.menu-trigger-icon {
-		font-size: 21px;
-		line-height: 24px;
-		font-weight: 800;
-		color: #176b61;
-	}
-
-	.menu-close-icon {
-		font-size: 24px;
-		line-height: 24px;
-		color: #243a36;
-	}
-
-	@media screen and (max-width: 768px) {
-		.menu-trigger {
-			left: 0;
-			top: 46%;
-			width: 40px;
-			height: 46px;
-		}
-
-		.menu-drawer {
-			width: 300px;
-		}
-	}
 </style>

@@ -53,11 +53,13 @@
 				</view>
 			</view>
 		</view>
+
 	</view>
 </template>
 
 <script lang="uts">
 	export default {
+		emits: ['favorite-request'],
 		props: {
 			sections: {
 				type: Array,
@@ -85,9 +87,7 @@
 				})
 			},
 			goFavorite() {
-				uni.navigateTo({
-					url: '/pages/favorite/index'
-				})
+				this.$emit('favorite-request')
 			},
 			goAbout() {
 				uni.navigateTo({
@@ -182,70 +182,4 @@
 		font-weight: 700;
 	}
 
-	@media screen and (max-width: 768px) {
-		.section-nav {
-			margin-top: 18px;
-		}
-
-		.nav-btn {
-			height: 44px;
-		}
-
-		.nav-btn-text {
-			font-size: 14px;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		.section-nav {
-			margin-top: 10px;
-		}
-
-		.nav-header {
-			display: none;
-		}
-
-		.nav-group {
-			margin-top: 0;
-			padding: 6px;
-			border-radius: 7px;
-			display: flex;
-			flex-direction: row;
-			flex-wrap: nowrap;
-			overflow-x: auto;
-			overflow-y: hidden;
-		}
-
-		.nav-btn {
-			height: 34px;
-			padding-left: 12px;
-			padding-right: 12px;
-			border-radius: 5px;
-			flex-shrink: 0;
-		}
-
-		.nav-btn+.nav-btn {
-			margin-top: 0;
-			margin-left: 6px;
-		}
-
-		.nav-indicator {
-			display: none;
-		}
-
-		.nav-main {
-			margin-left: 0;
-			flex: none;
-		}
-
-		.nav-btn-text {
-			font-size: 13px;
-			line-height: 18px;
-		}
-
-		.nav-btn-active {
-			background-color: #e5f1ed;
-			box-shadow: inset 0 0 0 1px #bfd8d1;
-		}
-	}
 </style>

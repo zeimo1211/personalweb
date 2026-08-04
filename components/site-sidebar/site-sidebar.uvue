@@ -6,11 +6,11 @@
 			<view class="home-entry-icon">
 				<view class="home-entry-icon-core"></view>
 			</view>
-			<text class="home-entry-text">返回 3D 交互主页</text>
+			<text class="home-entry-text">返回主页</text>
 			<text class="home-entry-arrow">›</text>
 		</view>
 
-		<section-nav :sections="sections" :activeSectionId="activeSectionId" />
+		<section-nav :sections="sections" :activeSectionId="activeSectionId" @favorite-request="requestFavorite" />
 
 		<view class="tip-card">
 			<text class="tip-title">施工中</text>
@@ -24,6 +24,7 @@
 	import SectionNav from '@/components/section-nav/section-nav.uvue'
 
 	export default {
+		emits: ['favorite-request'],
 		components: {
 			ProfileCard,
 			SectionNav
@@ -47,6 +48,9 @@
 				uni.reLaunch({
 					url: '/pages/home/index'
 				})
+			},
+			requestFavorite() {
+				this.$emit('favorite-request')
 			}
 		}
 	}
@@ -158,37 +162,4 @@
 		color: #788985;
 	}
 
-	@media screen and (max-width: 768px) {
-		.sidebar {
-			width: 100%;
-			min-height: auto;
-			padding: 10px 12px;
-			border-right-width: 0;
-			border-bottom-width: 1px;
-			border-bottom-style: solid;
-			border-bottom-color: #cfdbd5;
-			box-sizing: border-box;
-			flex-shrink: 0;
-		}
-
-		.tip-card {
-			display: none;
-		}
-
-		.home-entry {
-			margin-top: 8px;
-			height: 38px;
-			box-shadow: 3px 3px 0 rgba(91, 128, 118, 0.1);
-		}
-
-		.home-entry-icon {
-			width: 15px;
-			height: 15px;
-		}
-
-		.home-entry-icon-core {
-			width: 5px;
-			height: 5px;
-		}
-	}
 </style>

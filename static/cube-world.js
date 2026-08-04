@@ -64,9 +64,13 @@
   }
 
   function addStyles() {
-    if (document.getElementById('cube-world-styles')) return
-    var style = document.createElement('style')
-    style.id = 'cube-world-styles'
+    var style = document.getElementById('cube-world-styles')
+    var needsAppend = false
+    if (!style) {
+      style = document.createElement('style')
+      style.id = 'cube-world-styles'
+      needsAppend = true
+    }
     style.textContent = `
       #cube-world { position: relative; overflow: hidden; font-family: Inter, "PingFang SC", "Microsoft YaHei", sans-serif; color: #13211f; }
       #cube-world * { box-sizing: border-box; letter-spacing: 0; }
@@ -100,6 +104,30 @@
       .cube-audio-toggle.muted .cube-audio-icon { background: #899793; }
       .cube-audio-toggle.muted .cube-audio-icon::before { border-right-color: #899793; }
       .cube-audio-toggle.muted .cube-audio-icon::after { left: 12px; top: 5px; width: 18px; height: 2px; border: 0; border-radius: 0; background: #c97980; transform: rotate(-45deg); }
+      .cube-joystick { position: absolute; left: 34px; bottom: 92px; z-index: 8; width: 132px; height: 132px; display: none; touch-action: none; user-select: none; }
+      .cube-joystick-pad { position: absolute; inset: 0; border: 1px solid rgba(25, 50, 46, .18); border-radius: 50%; background: rgba(252,255,254,.76); box-shadow: 4px 5px 0 rgba(53, 101, 92, .13), 0 12px 28px rgba(28, 52, 48, .12); backdrop-filter: blur(10px); }
+      .cube-joystick-knob { position: absolute; left: 50%; top: 50%; width: 46px; height: 46px; margin-left: -23px; margin-top: -23px; border: 1px solid rgba(23, 107, 97, .28); border-radius: 50%; background: #176b61; box-shadow: inset 0 1px 0 rgba(255,255,255,.24), 0 8px 18px rgba(23, 107, 97, .22); transition: transform .1s ease-out; pointer-events: none; }
+      .cube-joystick-button { position: absolute; width: 38px; height: 38px; border: 0; border-radius: 50%; background: transparent; color: #176b61; font: 800 18px/38px inherit; cursor: pointer; touch-action: none; }
+      .cube-joystick-button.up { left: 47px; top: 7px; }
+      .cube-joystick-button.right { right: 7px; top: 47px; }
+      .cube-joystick-button.down { left: 47px; bottom: 7px; }
+      .cube-joystick-button.left { left: 7px; top: 47px; }
+      .cube-joystick.mobile-visible { display: block; }
+      .favorite-password-backdrop { position: fixed; inset: 0; z-index: 90; background: rgba(18, 35, 32, .34); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 18px; }
+      .favorite-password-dialog { width: min(360px, 100%); padding: 24px; border: 1px solid #b9d3cb; border-top: 4px solid #dca2a3; border-radius: 8px; background: #fffdf7; box-shadow: 7px 8px 0 rgba(103, 138, 128, .16), 0 24px 58px rgba(15, 32, 29, .24); color: #243a36; }
+      .favorite-password-dialog * { box-sizing: border-box; }
+      .favorite-password-mark { width: 34px; height: 34px; margin: 0 auto; border: 2px solid #c97980; background: #f3c1b5; transform: rotate(45deg); display: flex; align-items: center; justify-content: center; }
+      .favorite-password-mark::before { content: ''; width: 12px; height: 12px; background: #fffaf0; }
+      .favorite-password-kicker { display: block; margin-top: 18px; color: #2f8077; font-size: 12px; line-height: 18px; font-weight: 800; text-align: center; }
+      .favorite-password-title { display: block; margin-top: 6px; color: #243a36; font-size: 24px; line-height: 32px; font-weight: 800; text-align: center; }
+      .favorite-password-desc { display: block; margin-top: 8px; color: #788985; font-size: 14px; line-height: 22px; text-align: center; }
+      .favorite-password-input { display: block; width: 100%; height: 44px; margin-top: 18px; padding: 0 14px; border: 1px solid #bdcbc5; border-radius: 6px; background: #f8fbf7; color: #243a36; font: 500 15px/44px inherit; outline: none; }
+      .favorite-password-input.error { border-color: #dca2a3; background: #fff7f4; }
+      .favorite-password-message { min-height: 20px; margin-top: 10px; color: #b95d63; font-size: 13px; line-height: 20px; font-weight: 800; text-align: center; }
+      .favorite-password-message.success { color: #2f8077; }
+      .favorite-password-actions { display: flex; gap: 10px; margin-top: 18px; }
+      .favorite-password-button { flex: 1; height: 40px; border: 1px solid #bdcbc5; border-radius: 6px; background: #fffdf7; color: #5d6d69; font: 800 14px/38px inherit; cursor: pointer; }
+      .favorite-password-button.primary { border-color: #236b63; background: #2f8077; color: #fffdf7; box-shadow: 3px 3px 0 rgba(32, 92, 84, .18); }
       @media (max-width: 760px) {
         .cube-brand { display: none; }
         .cube-hud { right: 12px; top: 12px; width: min(276px, calc(100vw - 68px)); min-width: 155px; padding: 12px; }
@@ -109,12 +137,87 @@
         .cube-hud button { height: 32px; padding: 0 9px; font-size: 11px; line-height: 30px; }
         .world-label-name { min-width: 62px; padding: 4px 6px; font-size: 10px; line-height: 14px; }
         .cube-audio-toggle { right: 12px; bottom: 12px; width: 38px; height: 38px; }
+        .cube-joystick { left: 150px; bottom: 200px; }
+        .cube-joystick { display: block; }
       }
     `
-    document.head.appendChild(style)
+    if (needsAppend) document.head.appendChild(style)
+  }
+
+  function showFavoritePasswordDialog(onVerified) {
+    var existing = document.querySelector('.favorite-password-backdrop')
+    if (existing) existing.remove()
+
+    var backdrop = document.createElement('div')
+    backdrop.className = 'favorite-password-backdrop'
+    backdrop.innerHTML = `
+      <div class="favorite-password-dialog">
+        <div class="favorite-password-mark" aria-hidden="true"></div>
+        <span class="favorite-password-kicker">PRIVATE AREA</span>
+        <span class="favorite-password-title">进入我的最爱</span>
+        <span class="favorite-password-desc">这里需要一句只有你知道的话。</span>
+        <input class="favorite-password-input" type="text" autocomplete="off" placeholder="请输入密码" />
+        <div class="favorite-password-message"></div>
+        <div class="favorite-password-actions">
+          <button class="favorite-password-button" type="button" data-cancel="true">取消</button>
+          <button class="favorite-password-button primary" type="button" data-submit="true">确认进入</button>
+        </div>
+      </div>
+    `
+    document.body.appendChild(backdrop)
+
+    var input = backdrop.querySelector('.favorite-password-input')
+    var message = backdrop.querySelector('.favorite-password-message')
+    var submit = function () {
+      var password = input.value || ''
+      if (password === '我什么都做不到！') {
+        input.classList.remove('error')
+        message.classList.add('success')
+        message.textContent = '密码正确'
+        try { global.sessionStorage.setItem('favorite-entry-verified', 'yes') } catch (error) {}
+        global.setTimeout(function () {
+          backdrop.remove()
+          onVerified()
+        }, 650)
+      } else {
+        input.classList.add('error')
+        message.classList.remove('success')
+        message.textContent = password ? '密码错误' : '请输入密码'
+      }
+    }
+    backdrop.addEventListener('click', function (event) {
+      if (event.target === backdrop || event.target.closest('[data-cancel]')) {
+        backdrop.remove()
+        return
+      }
+      if (event.target.closest('[data-submit]')) submit()
+    })
+    input.addEventListener('input', function () {
+      input.classList.remove('error')
+      message.textContent = ''
+    })
+    input.addEventListener('keydown', function (event) {
+      event.stopPropagation()
+      if (event.key === 'Enter') submit()
+    })
+    global.setTimeout(function () { input.focus() }, 40)
+  }
+
+  function shouldIgnoreWorldKeyEvent(event) {
+    var target = event.target
+    if (!target) return false
+    if (document.querySelector('.favorite-password-backdrop')) return true
+    var tagName = target.tagName ? target.tagName.toLowerCase() : ''
+    return tagName === 'input' || tagName === 'textarea' || target.isContentEditable
   }
 
   function route(path) {
+    if (path === '/pages/favorite/index') {
+      showFavoritePasswordDialog(function () {
+        global.location.hash = '#' + path
+      })
+      return
+    }
     global.location.hash = '#' + path
   }
 
@@ -350,6 +453,14 @@
       <button class="cube-audio-toggle" type="button" title="关闭声音" aria-label="关闭声音">
         <span class="cube-audio-icon" aria-hidden="true"></span>
       </button>
+      <div class="cube-joystick" aria-label="移动摇杆">
+        <div class="cube-joystick-pad"></div>
+        <button class="cube-joystick-button up" type="button" data-dx="0" data-dz="-1" aria-label="向上移动">▲</button>
+        <button class="cube-joystick-button right" type="button" data-dx="1" data-dz="0" aria-label="向右移动">▶</button>
+        <button class="cube-joystick-button down" type="button" data-dx="0" data-dz="1" aria-label="向下移动">▼</button>
+        <button class="cube-joystick-button left" type="button" data-dx="-1" data-dz="0" aria-label="向左移动">◀</button>
+        <div class="cube-joystick-knob"></div>
+      </div>
       <div class="cube-toast"></div>
     `
     this.host.appendChild(ui)
@@ -359,6 +470,8 @@
     this.hudDesc = ui.querySelector('.cube-hud-desc')
     this.enterButton = ui.querySelector('.enter-button')
     this.audioButton = ui.querySelector('.cube-audio-toggle')
+    this.joystick = ui.querySelector('.cube-joystick')
+    this.joystickKnob = ui.querySelector('.cube-joystick-knob')
     this.toast = ui.querySelector('.cube-toast')
     this.updateAudioButton()
   }
@@ -1078,6 +1191,7 @@
   World.prototype.bindEvents = function () {
     var self = this
     this.onKeyDown = function (event) {
+      if (shouldIgnoreWorldKeyEvent(event)) return
       self.ensureAudio()
       var key = event.key.toLowerCase()
       var movement = null
@@ -1097,6 +1211,7 @@
       }
     }
     this.onKeyUp = function (event) {
+      if (shouldIgnoreWorldKeyEvent(event)) return
       var key = event.key.toLowerCase()
       if (key === 'w' || key === 'a' || key === 's' || key === 'd' || key.indexOf('arrow') === 0) {
         self.heldMovement = null
@@ -1107,6 +1222,63 @@
     global.addEventListener('keydown', this.onKeyDown)
     global.addEventListener('keyup', this.onKeyUp)
     global.addEventListener('resize', this.onResize)
+
+    var joystickPointerId = null
+    var joystickMovement = null
+    var moveFromJoystick = function (event) {
+      if (!self.joystick) return null
+      var rect = self.joystick.getBoundingClientRect()
+      var centerX = rect.left + rect.width / 2
+      var centerY = rect.top + rect.height / 2
+      var deltaX = event.clientX - centerX
+      var deltaY = event.clientY - centerY
+      var distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
+      var maxDistance = rect.width * 0.3
+      var knobDistance = Math.min(maxDistance, distance)
+      var knobX = distance > 0 ? deltaX / distance * knobDistance : 0
+      var knobY = distance > 0 ? deltaY / distance * knobDistance : 0
+      if (self.joystickKnob) self.joystickKnob.style.transform = 'translate(' + knobX + 'px, ' + knobY + 'px)'
+      if (distance < 18) return null
+      if (Math.abs(deltaX) > Math.abs(deltaY)) return deltaX > 0 ? [1, 0] : [-1, 0]
+      return deltaY > 0 ? [0, 1] : [0, -1]
+    }
+    var clearJoystick = function () {
+      joystickPointerId = null
+      joystickMovement = null
+      self.heldMovement = null
+      global.clearTimeout(self.repeatTimer)
+      if (self.joystickKnob) self.joystickKnob.style.transform = 'translate(0, 0)'
+    }
+
+    if (this.joystick) {
+      this.joystick.addEventListener('pointerdown', function (event) {
+        if (event.target.closest('.cube-joystick-button')) return
+        event.preventDefault()
+        self.ensureAudio()
+        joystickPointerId = event.pointerId
+        self.joystick.setPointerCapture(event.pointerId)
+        joystickMovement = moveFromJoystick(event)
+        self.heldMovement = joystickMovement
+        if (joystickMovement) self.requestMove(joystickMovement[0], joystickMovement[1])
+      })
+      this.joystick.addEventListener('pointermove', function (event) {
+        if (joystickPointerId !== event.pointerId) return
+        event.preventDefault()
+        var movement = moveFromJoystick(event)
+        if (!movement) {
+          joystickMovement = null
+          self.heldMovement = null
+          return
+        }
+        var changed = !joystickMovement || joystickMovement[0] !== movement[0] || joystickMovement[1] !== movement[1]
+        joystickMovement = movement
+        self.heldMovement = movement
+        if (changed && !self.movement) self.requestMove(movement[0], movement[1])
+      })
+      this.joystick.addEventListener('pointerup', clearJoystick)
+      this.joystick.addEventListener('pointercancel', clearJoystick)
+      this.joystick.addEventListener('lostpointercapture', clearJoystick)
+    }
 
     this.ui.addEventListener('click', function (event) {
       var audioButton = event.target.closest('.cube-audio-toggle')
@@ -1132,6 +1304,7 @@
   World.prototype.resize = function () {
     var width = Math.max(1, this.host.clientWidth)
     var height = Math.max(1, this.host.clientHeight)
+    if (this.joystick) this.joystick.classList.toggle('mobile-visible', width <= 760)
     var aspect = width / height
     var viewHeight = width < 760 ? 14.5 : 12.1
     this.camera.left = -viewHeight * aspect / 2

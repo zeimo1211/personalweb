@@ -1,0 +1,186 @@
+<template>
+	<view class="site-menu">
+		<view v-if="menuOpen" class="menu-backdrop" @click="closeMenu"></view>
+		<view class="menu-drawer" :class="menuOpen ? 'open' : ''" @click.stop="handleDrawerClick">
+			<site-sidebar :profile="profile" :sections="sections" :activeSectionId="activeSectionId"
+				@favorite-request="openFavoritePassword" />
+			<view class="menu-close" @click="closeMenu">
+				<view class="menu-close-line menu-close-line-a"></view>
+				<view class="menu-close-line menu-close-line-b"></view>
+			</view>
+		</view>
+
+		<view v-if="!menuOpen" class="menu-trigger" @click="openMenu">
+			<view class="menu-trigger-icon">
+				<view class="menu-trigger-line"></view>
+				<view class="menu-trigger-line"></view>
+				<view class="menu-trigger-line"></view>
+			</view>
+		</view>
+
+		<favorite-password-modal v-if="showFavoritePassword" @verified="enterFavorite" @cancel="closeFavoritePassword" />
+	</view>
+</template>
+
+<script lang="uts">
+	import SiteSidebar from '@/components/site-sidebar/site-sidebar.uvue'
+	import FavoritePasswordModal from '@/components/favorite-password-modal/favorite-password-modal.uvue'
+
+	export default {
+		components: {
+			SiteSidebar,
+			FavoritePasswordModal
+		},
+		props: {
+			profile: {
+				type: Object,
+				required: true
+			},
+			sections: {
+				type: Array,
+				required: true
+			},
+			activeSectionId: {
+				type: String,
+				default: ''
+			}
+		},
+		data() {
+			return {
+				menuOpen: false,
+				showFavoritePassword: false
+			}
+		},
+		methods: {
+			openMenu() {
+				this.menuOpen = true
+			},
+			closeMenu() {
+				this.menuOpen = false
+			},
+			handleDrawerClick() {
+				setTimeout(() => {
+					this.closeMenu()
+				}, 80)
+			},
+			openFavoritePassword() {
+				this.showFavoritePassword = true
+			},
+			closeFavoritePassword() {
+				this.showFavoritePassword = false
+			},
+			enterFavorite() {
+				// #ifdef WEB
+				window.sessionStorage.setItem('favorite-entry-verified', 'yes')
+				// #endif
+				this.showFavoritePassword = false
+				this.closeMenu()
+				uni.navigateTo({
+					url: '/pages/favorite/index'
+				})
+			}
+		}
+	}
+</script>
+
+<style>
+	.site-menu {
+		position: relative;
+		z-index: 30;
+		width: 0;
+		height: 0;
+		flex-shrink: 0;
+	}
+
+	.menu-backdrop {
+		position: fixed;
+		inset: 0;
+		z-index: 20;
+		background-color: rgba(12, 25, 23, 0.32);
+		backdrop-filter: blur(3px);
+	}
+
+	.menu-drawer {
+		position: fixed;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 21;
+		width: 280px;
+		max-width: calc(100vw - 48px);
+		background-color: #f8f4e9;
+		box-shadow: 18px 0 48px rgba(15, 32, 29, 0.18);
+		transform: translateX(-105%);
+		transition-property: transform;
+		transition-duration: 220ms;
+		transition-timing-function: ease-out;
+		overflow-y: auto;
+	}
+
+	.menu-drawer.open {
+		transform: translateX(0);
+	}
+
+	.menu-close,
+	.menu-trigger {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-width: 1px;
+		border-style: solid;
+		border-color: rgba(21, 52, 47, 0.18);
+		background-color: rgba(255, 255, 255, 0.92);
+		box-shadow: 0 10px 28px rgba(20, 45, 41, 0.16);
+	}
+
+	.menu-trigger {
+		position: fixed;
+		left: 0;
+		top: 50%;
+		z-index: 10;
+		width: 44px;
+		height: 48px;
+		border-radius: 0 7px 7px 0;
+		transform: translateY(-50%);
+	}
+
+	.menu-close {
+		position: absolute;
+		right: -42px;
+		top: 12px;
+		z-index: 23;
+		width: 34px;
+		height: 34px;
+		border-radius: 6px;
+	}
+
+	.menu-trigger-icon {
+		width: 18px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.menu-trigger-line {
+		height: 2px;
+		border-radius: 2px;
+		background-color: #176b61;
+	}
+
+	.menu-close-line {
+		position: absolute;
+		width: 18px;
+		height: 2px;
+		border-radius: 2px;
+		background-color: #243a36;
+	}
+
+	.menu-close-line-a {
+		transform: rotate(45deg);
+	}
+
+	.menu-close-line-b {
+		transform: rotate(-45deg);
+	}
+
+</style>
