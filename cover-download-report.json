@@ -1,0 +1,304 @@
+[
+  {
+    "file": "game-2077.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-33hao.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-Aether-Gaze.webp",
+    "status": "OK",
+    "query": "Aether Gazer",
+    "source": "Yostar/LinkedIn",
+    "matched": "Yostar/LinkedIn",
+    "url": "https://media.licdn.com/dms/image/v2/D5612AQFabnPQ1nTPLQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1656422074710?e=2147483647&t=krN-VEynbX0D4RJ-XZW0iHPM8GDHacR2WCeNlN9orEA&v=beta"
+  },
+  {
+    "file": "game-Detroit-bh.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-Dragon-Raja.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-GRAY-RAVEN-PUNISHING.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-Harry-Potter-Magic-Awakened.webp",
+    "status": "OK",
+    "query": "Harry Potter Magic Awakened",
+    "source": "NetEase press release",
+    "matched": "NetEase press release",
+    "url": "https://prtimes.jp/i/71247/29/resize/d71247-29-935996-0.jpg"
+  },
+  {
+    "file": "game-Infinity-Nikki.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-Monument-Valley.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-NTE.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-P5R.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-Path-to-Nowhere.webp",
+    "status": "OK",
+    "query": "Path to Nowhere",
+    "source": "GamePicks",
+    "matched": "GamePicks",
+    "url": "https://www.shabondama.jp/wp-content/uploads/2025/11/%E7%84%A1%E6%9C%9F%E8%BF%B7%E9%80%94%EF%BC%9APath-to-Nowhere1.jpg"
+  },
+  {
+    "file": "game-Pokemon-Shield.webp",
+    "status": "OK",
+    "query": "Pokemon Sword and Shield",
+    "source": "ActuGaming",
+    "matched": "ActuGaming",
+    "url": "https://static.actugaming.net/media/2019/02/artwork-carte.jpg"
+  },
+  {
+    "file": "game-Rhythm-Tengoku4.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-Tower-of-Fantasy.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-animalwell.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-awayout.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-botw.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-cities-skylines.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-death-stranding.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-densshattack.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-dpx4.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-dpx6.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-duckov.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-eldenring.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-endfield.webp",
+    "status": "OK",
+    "query": "Arknights Endfield",
+    "source": "Enduins",
+    "matched": "Enduins",
+    "url": "https://www.enduins.com/wp-content/uploads/2023/12/arknights-endfield-1.jpg"
+  },
+  {
+    "file": "game-forestsons.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-genshin.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-hogwarts.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-hollow-knight.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-hollow-knight2.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-honkie-starrail.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-honkie3.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-honor-of-kings-world.webp",
+    "status": "OK",
+    "query": "Honor of Kings World",
+    "source": "Wikimedia",
+    "matched": "Honor of Kings",
+    "url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7d/Honor_of_Kings_logo.png/960px-Honor_of_Kings_logo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "file": "game-human-fallflat.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-ittakestwo.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-ninjamustdie3.webp",
+    "status": "OK",
+    "query": "Ninja Must Die",
+    "source": "Online Game Planet",
+    "matched": "Online Game Planet",
+    "url": "https://onlinegame-pla.net/wp-content/uploads/2022/10/1-22.jpg"
+  },
+  {
+    "file": "game-pcbuilding-simulator2.webp",
+    "status": "OK",
+    "query": "PC Building Simulator 2",
+    "source": "Gaming-cdn",
+    "matched": "Gaming-cdn",
+    "url": "https://gaming-cdn.com/images/products/10597/screenshot/pc-building-simulator-2-pc-spel-epic-games-wallpaper-1.jpg?v=1698227142"
+  },
+  {
+    "file": "game-portVow-of-Heroes.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-portal.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-portal2.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-portalbridge.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-pragmata.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-qqspeed-mobile.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-rdr2.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-re9.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-sanguosha.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-sheephome.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-splitfiction.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-totk.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-wukong.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-wuwa.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-yys.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-全民飞机大战.webp",
+    "status": "EXISTING",
+    "source": "pre-existing"
+  },
+  {
+    "file": "game-天天飞车.webp",
+    "status": "OK",
+    "query": "Tiantian Feiche game",
+    "source": "local genre fallback",
+    "matched": "local genre fallback",
+    "url": "local:game-qqspeed-mobile.webp"
+  }
+]

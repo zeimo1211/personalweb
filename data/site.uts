@@ -16,6 +16,7 @@ export type GameExperience = {
 	id : string
 	title : string
 	cover : string
+	tags : string[]
 	duration : string
 	progress : string
 	score : string

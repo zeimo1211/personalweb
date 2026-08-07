@@ -12,13 +12,34 @@
 				</text>
 
 				<view class="toolbar">
+					<view class="tag-filter">
+						<text class="tag-filter-label">标签筛选</text>
+						<view class="tag-select-wrap">
+							<view class="tag-select-trigger" @click="toggleTagOptions">
+								<view class="selected-tag-pill" :class="{ 'selected-tag-pill-muted': selectedTag == '' }">
+									<text class="selected-tag-pill-text">{{ selectedTagLabel }}</text>
+								</view>
+								<text class="tag-select-arrow">{{ tagOptionsOpen ? '⌃' : '⌄' }}</text>
+							</view>
+							<view v-if="tagOptionsOpen" class="tag-options">
+								<view v-for="tag in tagOptions" :key="tag" class="tag-option"
+									:class="{ 'tag-option-active': selectedTag == tag }" @click="selectTag(tag)">
+									<text class="tag-option-text">{{ tag }}</text>
+									<text v-if="selectedTag == tag" class="tag-option-check">✓</text>
+								</view>
+								<view v-if="selectedTag != ''" class="tag-option-clear" @click="clearTagSelection">
+									<text class="tag-option-clear-text">清除标签筛选</text>
+								</view>
+							</view>
+						</view>
+					</view>
 					<view class="search-box">
 						<input class="search-input" :value="searchKeyword" placeholder="搜索游戏名称 / 时长 / 进度 / 评价"
 							@input="onSearchInput" />
 					</view>
 
-					<view v-if="searchKeyword != ''" class="clear-btn" @click="clearSearch">
-						<text class="clear-btn-text">清空搜索</text>
+					<view v-if="searchKeyword != '' || selectedTag != ''" class="clear-btn" @click="clearFilters">
+						<text class="clear-btn-text">清空筛选</text>
 					</view>
 
 					<view class="result-badge">
@@ -36,8 +57,15 @@
 					<view class="game-main">
 						<view class="game-header">
 							<text class="game-title">{{ game.title }}</text>
-							<view class="game-score-badge">
-								<text class="game-score-text">{{ game.score }}</text>
+							<view class="game-header-right">
+								<view v-if="game.tags && game.tags.length > 0" class="game-tags">
+									<view v-for="tag in game.tags" :key="tag" class="game-tag">
+										<text class="game-tag-text">{{ tag }}</text>
+									</view>
+								</view>
+								<view class="game-score-badge">
+									<text class="game-score-text">{{ game.score }}</text>
+								</view>
 							</view>
 						</view>
 
@@ -90,6 +118,13 @@
 			return {
 				site: siteData,
 				searchKeyword: '',
+				selectedTag: '',
+				tagOptions: [
+					'二次元', '互动电影', '休闲', '剧情', '动作', '单机', '卡牌', '合作', '回合制', '射击',
+					'平台跳跃', '建造', '开放世界', '恐怖', '手游', '换装', '收集养成', '模拟经营', '独立游戏',
+					'生存', '科幻', '竞速', '策略', '类银河战士恶魔城', '经典', '角色扮演', '解谜', '长线运营', '音游'
+				],
+				tagOptionsOpen: false,
 				displayCount: 8,
 				pageSize: 8,
 				scrollTopValue: 0,
@@ -97,15 +132,24 @@
 			}
 		},
 		computed: {
+			selectedTagLabel() : string {
+				if (this.selectedTag == '') {
+					return '全部标签'
+				}
+				return this.selectedTag
+			},
 			filteredGames() : any[] {
 				const keyword = this.searchKeyword.trim().toLowerCase()
 				const list = this.site.games as any[]
 
-				if (keyword == '') {
-					return list
-				}
-
 				return list.filter((item) => {
+					const tags = item.tags || []
+					if (this.selectedTag != '' && tags.indexOf(this.selectedTag) == -1) {
+						return false
+					}
+					if (keyword == '') {
+						return true
+					}
 					const title = String(item.title || '').toLowerCase()
 					const duration = String(item.duration || '').toLowerCase()
 					const progress = String(item.progress || '').toLowerCase()
@@ -137,6 +181,31 @@
 			},
 			clearSearch() {
 				this.searchKeyword = ''
+				this.displayCount = this.pageSize
+				this.showBackTop = false
+				this.backToTop()
+			},
+			selectTag(tag : string) {
+				this.selectedTag = this.selectedTag == tag ? '' : tag
+				this.tagOptionsOpen = false
+				this.displayCount = this.pageSize
+				this.showBackTop = false
+				this.backToTop()
+			},
+			toggleTagOptions() {
+				this.tagOptionsOpen = !this.tagOptionsOpen
+			},
+			clearTagSelection() {
+				this.selectedTag = ''
+				this.displayCount = this.pageSize
+				this.tagOptionsOpen = false
+				this.showBackTop = false
+				this.backToTop()
+			},
+			clearFilters() {
+				this.searchKeyword = ''
+				this.selectedTag = ''
+				this.tagOptionsOpen = false
 				this.displayCount = this.pageSize
 				this.showBackTop = false
 				this.backToTop()
@@ -193,6 +262,7 @@
 		border-top-color: #dca2a3;
 		border-radius: 8px;
 		box-shadow: 6px 7px 0 rgba(103, 138, 128, 0.11), 0 14px 28px rgba(48, 79, 72, 0.05);
+		overflow: visible;
 	}
 
 	.hero-subtitle {
@@ -222,6 +292,167 @@
 		align-items: center;
 		gap: 12px;
 		flex-wrap: wrap;
+		position: relative;
+		overflow: visible;
+	}
+
+	.tag-filter {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 8px;
+		flex-shrink: 0;
+		position: relative;
+		overflow: visible;
+	}
+
+	.tag-filter-label {
+		font-size: 13px;
+		color: #788985;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	.tag-select-wrap {
+		position: relative;
+		min-width: 170px;
+		z-index: 20;
+		overflow: visible;
+	}
+
+	.tag-select-trigger {
+		min-height: 42px;
+		padding: 5px 10px;
+		border-radius: 21px;
+		background-color: #fff8f0;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #e5c9bc;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+	}
+
+	.selected-tag-pill,
+	.tag-option {
+		padding: 5px 10px;
+		border-radius: 14px;
+		background-color: #f1f6f3;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #c7dcd4;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.selected-tag-pill {
+		background-color: #f7eadf;
+		border-color: #dca2a3;
+	}
+
+	.selected-tag-pill-muted {
+		background-color: #f1f6f3;
+		border-color: #c7dcd4;
+	}
+
+	.selected-tag-pill-text {
+		font-size: 12px;
+		line-height: 16px;
+		color: #7c625c;
+		white-space: nowrap;
+	}
+
+	.selected-tag-pill-muted .selected-tag-pill-text {
+		color: #2f8077;
+	}
+
+	.tag-select-arrow {
+		font-size: 15px;
+		line-height: 16px;
+		color: #5d6d69;
+	}
+
+	.tag-options {
+		position: fixed;
+		top: 204px;
+		left: 16px;
+		right: 16px;
+		width: auto;
+		max-width: none;
+		max-height: calc(100vh - 224px);
+		overflow-y: auto;
+		padding: 12px;
+		box-sizing: border-box;
+		background-color: #fffdf7;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #bdcbc5;
+		border-radius: 12px;
+		box-shadow: 0 16px 36px rgba(48, 79, 72, 0.22);
+		z-index: 100;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+
+	.tag-option {
+		min-height: 32px;
+		gap: 6px;
+	}
+
+	.tag-option-active {
+		background-color: #f7eadf;
+		border-color: #dca2a3;
+	}
+
+	.tag-option-text,
+	.game-tag-text {
+		font-size: 12px;
+		line-height: 16px;
+		color: #2f8077;
+		white-space: nowrap;
+	}
+
+	.tag-option-active .tag-option-text {
+		color: #7c625c;
+	}
+
+	.tag-option-active .tag-option-check {
+		color: #c88788;
+	}
+
+	.tag-option-check {
+		font-size: 14px;
+		color: #c88788;
+		font-weight: 700;
+	}
+
+	.tag-option-clear {
+		width: 100%;
+		box-sizing: border-box;
+		margin-top: 4px;
+		padding: 8px 10px 4px;
+		border-top-width: 1px;
+		border-top-style: solid;
+		border-top-color: #e5ebe7;
+	}
+
+	.tag-option-clear-text {
+		font-size: 12px;
+		color: #788985;
+	}
+
+	.tag-options-empty {
+		width: 100%;
+		padding: 10px;
+		box-sizing: border-box;
+		font-size: 12px;
+		color: #788985;
+		text-align: center;
 	}
 
 	.search-box {
@@ -344,6 +575,33 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
+	}
+
+	.game-header-right {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 8px;
+		flex-wrap: wrap;
+		margin-left: 12px;
+	}
+
+	.game-tags {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: 6px;
+	}
+
+	.game-tag {
+		padding-top: 5px;
+		padding-bottom: 5px;
+		padding-left: 12px;
+		padding-right: 12px;
+		background-color: #e5f1ed;
+		border-color: #bfd8d1;
 	}
 
 	.game-title {
@@ -514,6 +772,28 @@
 			align-items: stretch;
 		}
 
+		.tag-filter {
+			width: 100%;
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.tag-select-wrap,
+		.tag-select-trigger {
+			width: 100%;
+		}
+
+		.tag-options {
+			left: 16px;
+			right: 16px;
+			top: 204px;
+			bottom: auto;
+			width: auto;
+			max-width: none;
+			max-height: calc(100vh - 224px);
+			box-sizing: border-box;
+		}
+
 		.search-box {
 			min-width: 0;
 			width: 100%;
@@ -554,6 +834,16 @@
 			gap: 8px;
 		}
 
+		.game-header-right {
+			width: 100%;
+			margin-left: 0;
+			justify-content: flex-start;
+		}
+
+		.game-tags {
+			justify-content: flex-start;
+		}
+
 		.game-score-badge {
 			margin-left: 0;
 		}
@@ -565,6 +855,25 @@
 		.back-top-btn {
 			right: 16px;
 			bottom: 16px;
+		}
+	}
+
+	@media screen and (max-height: 540px) {
+		.tag-options {
+			max-height: 52vh;
+		}
+	}
+
+	@media screen and (orientation: landscape) and (min-width: 769px) {
+		.tag-options {
+			position: absolute;
+			top: 0;
+			left: calc(100% + 12px);
+			right: auto;
+			bottom: auto;
+			width: 520px;
+			max-width: calc(100vw - 240px);
+			max-height: 52vh;
 		}
 	}
 </style>
